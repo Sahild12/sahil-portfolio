@@ -26,6 +26,13 @@ body {
   background: #000;
 }
 
+@media (min-width: 768px) {
+  body,
+  body * {
+    cursor: none !important;
+  }
+}
+
 button,
 a {
   -webkit-tap-highlight-color: transparent;

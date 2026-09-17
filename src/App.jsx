@@ -4,6 +4,7 @@ import About from "./components/About";
 import TechMarquee from "./components/TechMarquee";
 import CustomCursor from "./components/CustomCursor";
 import Projects from "./components/projects";
+import Identity from "./components/Identity";
 import WhatsAppButton from "./components/WhatsAppButton";
 import Loader from "./components/Loader";
 import { useCallback, useState } from "react";
@@ -38,6 +39,8 @@ function App() {
       />
 
       <Projects />
+
+      <Identity />
 
       <WhatsAppButton />
     </main>

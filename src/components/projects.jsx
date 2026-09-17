@@ -83,6 +83,7 @@ function Projects() {
                 onMouseEnter={() => setActiveProject(project)}
                 onMouseLeave={() => setActiveProject(null)}
                 onMouseMove={handleMouseMove}
+                data-project-cursor
                 className="group relative grid min-h-[128px] grid-cols-[50px_1fr_auto_60px] items-center gap-4 border-b border-white/[0.08] transition-colors duration-300 md:grid-cols-[55px_1fr_240px_80px]"
               >
                 {/* Number */}
@@ -163,6 +164,9 @@ function Projects() {
               className="block aspect-[16/10] w-full object-cover"
             />
 
+            <div className="absolute left-1/2 top-1/2 flex h-14 w-14 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-orange-500">
+              <span className="h-2 w-2 rounded-full bg-orange-500" />
+            </div>
           </div>
         </div>
       )}

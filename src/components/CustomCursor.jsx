@@ -13,6 +13,7 @@ function CustomCursor() {
     const trail = Array.from({ length: TRAIL_LEN }, () => ({ x: mouse.x, y: mouse.y }));
 
     let isHovering = false;
+    let isProjectHovering = false;
     let activeLabel = "";       // text to show inside ring
     let currentScale = 1;
     let currentLabelOpacity = 0;
@@ -31,6 +32,7 @@ function CustomCursor() {
       );
       if (el) {
         isHovering = true;
+        isProjectHovering = el.hasAttribute("data-project-cursor");
         if (ringRef.current) {
           ringRef.current.classList.remove("border-gray-500/50");
           ringRef.current.classList.add("border-orange-500/80");
@@ -46,6 +48,7 @@ function CustomCursor() {
       );
       if (el) {
         isHovering = false;
+        isProjectHovering = false;
         if (ringRef.current) {
           ringRef.current.classList.remove("border-orange-500/80");
           ringRef.current.classList.add("border-gray-500/50");
@@ -77,12 +80,19 @@ function CustomCursor() {
       if (ringRef.current) {
         ringRef.current.style.transform =
           `translate(${ring.x}px, ${ring.y}px) translate(-50%, -50%) scale(${currentScale.toFixed(3)})`;
+        ringRef.current.style.opacity = isProjectHovering ? "0" : "1";
       }
 
       // Dot tracks RAW mouse instantly — no lerp, snaps ahead of the ring
       if (dotRef.current) {
         dotRef.current.style.transform = `translate(${mouse.x}px, ${mouse.y}px) translate(-50%, -50%)`;
-        dotRef.current.style.opacity = (1 - currentLabelOpacity).toFixed(3);
+        dotRef.current.style.opacity = isProjectHovering
+          ? "0"
+          : (1 - currentLabelOpacity).toFixed(3);
+      }
+
+      if (svgRef.current) {
+        svgRef.current.style.opacity = isProjectHovering ? "0" : "1";
       }
 
       if (labelRef.current) {
@@ -181,4 +191,4 @@ function CustomCursor() {
 }
 
 export default CustomCursor;
-
+
