@@ -1,42 +1,50 @@
 import { useState } from "react";
+import Magnetic from "./Magnetic";
 
 function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
     <>
-      <nav className="fixed left-0 top-0 z-[100] w-full px-8 py-8 md:px-[5vw]">
+      <nav className="fixed left-0 top-0 z-[100] w-full px-8 py-4 md:px-[5vw] bg-black/70 backdrop-blur-md">
         <div className="relative flex items-center justify-between">
 
           {/* LOGO */}
-          <a
-            href="#home"
-            className="bg-[#070707] px-4 py-3 font-display text-lg tracking-[0.12em] text-[#d8caca] transition duration-300 hover:text-orange-500"
-          >
-            SAHIL DALAVI<span className="text-orange-500">.</span>
-          </a>
+          <Magnetic pull={0.4}>
+            <a
+              href="#home"
+              className="bg-[#070707] px-4 py-3 font-display text-lg tracking-[0.12em] text-[#d8caca] transition duration-300 hover:text-orange-500"
+            >
+              SAHIL DALAVI<span className="text-orange-500">.</span>
+            </a>
+          </Magnetic>
 
           {/* AVAILABLE */}
-          <div className="absolute left-1/2 hidden -translate-x-1/2 items-center gap-3 rounded-full border border-white/20 px-5 py-2.5 md:flex">
-            <span className="h-2.5 w-2.5 rounded-full bg-green-500 shadow-[0_0_10px_rgba(34,197,94,0.7)]" />
+          <div className="group absolute left-1/2 hidden -translate-x-1/2 cursor-default items-center gap-2 rounded-full border border-white/20 px-3 py-1.5 transition-all duration-300 hover:border-green-500/50 hover:bg-green-500/5 hover:shadow-[0_0_20px_rgba(34,197,94,0.15)] md:flex">
+            <span className="relative flex h-1.5 w-1.5">
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-400 opacity-60" />
+              <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-green-500 shadow-[0_0_6px_2px_rgba(34,197,94,0.8)]" />
+            </span>
 
-            <span className="text-xs tracking-[0.1em] text-white/70">
+            <span className="text-[10px] tracking-[0.1em] text-white/70 transition-colors duration-300 group-hover:text-green-400">
               AVAILABLE FOR WORK
             </span>
           </div>
 
           {/* HAMBURGER */}
-          <button
-            onClick={() => setMenuOpen(true)}
-            className="group flex h-12 w-12 items-center justify-center rounded-full border border-white/20 transition duration-300 hover:border-orange-500"
-            aria-label="Open menu"
-          >
-            <div className="flex flex-col gap-[5px]">
-              <span className="h-[2px] w-5 bg-white transition duration-300 group-hover:bg-orange-500" />
-              <span className="h-[2px] w-5 bg-white transition duration-300 group-hover:bg-orange-500" />
-              <span className="h-[2px] w-5 bg-white transition duration-300 group-hover:bg-orange-500" />
-            </div>
-          </button>
+          <Magnetic pull={0.4}>
+            <button
+              onClick={() => setMenuOpen(true)}
+              className="group flex h-12 w-12 items-center justify-center rounded-full border border-white/20 transition duration-300 hover:border-orange-500"
+              aria-label="Open menu"
+            >
+              <div className="flex flex-col gap-[5px]">
+                <span className="h-[2px] w-5 bg-white transition duration-300 group-hover:bg-orange-500" />
+                <span className="h-[2px] w-5 bg-white transition duration-300 group-hover:bg-orange-500" />
+                <span className="h-[2px] w-5 bg-white transition duration-300 group-hover:bg-orange-500" />
+              </div>
+            </button>
+          </Magnetic>
         </div>
       </nav>
 

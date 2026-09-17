@@ -6,6 +6,9 @@
   font-family: "Inter", sans-serif;
   color: white;
   background: #000;
+  --bg: #000;
+  --ink: #d8caca;
+  --ink-dim: rgba(216, 202, 202, 0.45);
 }
 
 * {
@@ -30,4 +33,31 @@ a {
 
 .font-display {
   font-family: "Bebas Neue", sans-serif;
+}
+
+.font-body {
+  font-family: "Inter", sans-serif;
+}
+
+@keyframes marquee {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+.marquee-track {
+  animation: marquee 65s linear infinite;
+  backface-visibility: hidden;
+  width: max-content;
+  will-change: transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track {
+    animation-play-state: paused;
+  }
 }
