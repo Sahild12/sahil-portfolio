@@ -1,18 +1,22 @@
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
-import About from "./components/about"
+import About from "./components/About";
 import TechMarquee from "./components/TechMarquee";
 import CustomCursor from "./components/CustomCursor";
+import Projects from "./components/projects";
 import WhatsAppButton from "./components/WhatsAppButton";
 import Loader from "./components/Loader";
-import { useState } from "react";
+import { useCallback, useState } from "react";
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
+  const handleLoaderComplete = useCallback(() => {
+    setIsLoading(false);
+  }, []);
 
   return (
     <main className="bg-black">
-      {isLoading && <Loader onComplete={() => setIsLoading(false)} />}
+      {isLoading && <Loader onComplete={handleLoaderComplete} />}
 
       <CustomCursor />
 
@@ -32,6 +36,8 @@ function App() {
           "GSAP animation",
         ]}
       />
+
+      <Projects />
 
       <WhatsAppButton />
     </main>

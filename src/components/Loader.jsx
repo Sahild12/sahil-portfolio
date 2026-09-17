@@ -59,7 +59,11 @@ export default function Loader({ onComplete }) {
         <div
             ref={rootRef}
             className="fixed inset-0 z-[1000] flex flex-col items-center justify-center bg-[var(--bg)]"
-            style={{ clipPath: "circle(150% at 50% 50%)" }}
+            style={{
+                backgroundColor: "#000",
+                clipPath: "circle(150% at 50% 50%)",
+                color: "#d8caca",
+            }}
         >
             <p className="font-serif italic text-2xl md:text-4xl text-[var(--ink)]">
                 {GREETINGS[greetingIndex]}

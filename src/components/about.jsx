@@ -12,9 +12,10 @@ function About() {
 
             const sectionTop = aboutRef.current.getBoundingClientRect().top;
             const startPoint = window.innerHeight * 0.72;
+            const finishPoint = window.innerHeight * 0.2;
             const progress = Math.min(
                 1,
-                Math.max(0, (startPoint - sectionTop) / (aboutRef.current.offsetHeight + startPoint * 0.35))
+                Math.max(0, (startPoint - sectionTop) / (startPoint - finishPoint))
             );
 
             setActiveWords(Math.ceil(progress * ABOUT_CHARACTERS.length));
@@ -65,7 +66,7 @@ function About() {
 
                     {/* Main text */}
                     <div className="relative max-w-[1250px]">
-                        <p className="font-body text-2xl leading-[1.18] tracking-[-0.03em] sm:text-3xl md:text-4xl lg:text-[3rem]">
+                        <p className="font-body text-xl leading-[1.2] tracking-[-0.02em] sm:text-2xl md:text-3xl lg:text-[2.5rem]">
                             {ABOUT_CHARACTERS.map((character, characterIndex) => (
                                 <span
                                     className={`transition-colors duration-300 ${characterIndex < activeWords ? "text-white" : "text-white/20"}`}
