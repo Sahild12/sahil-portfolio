@@ -104,24 +104,14 @@ function CustomCursor() {
       trail.length = TRAIL_LEN;
 
       if (svgRef.current && trail.length > 1) {
-        const pathEl = svgRef.current.querySelector("path");
         const circles = svgRef.current.querySelectorAll("circle");
-
-        // Smooth bezier trail
-        let d = `M ${trail[0].x.toFixed(1)},${trail[0].y.toFixed(1)}`;
-        for (let i = 1; i < trail.length - 1; i++) {
-          const mx = ((trail[i].x + trail[i + 1].x) / 2).toFixed(1);
-          const my = ((trail[i].y + trail[i + 1].y) / 2).toFixed(1);
-          d += ` Q ${trail[i].x.toFixed(1)},${trail[i].y.toFixed(1)} ${mx},${my}`;
-        }
-        if (pathEl) pathEl.setAttribute("d", d);
 
         circles.forEach((c, i) => {
           const p = trail[i];
           if (!p) return;
           const progress = i / TRAIL_LEN;
-          const radius = Math.max(0.3, progress * 4.5 * (1 - progress * 0.6));
-          const opacity = Math.max(0, 1 - progress * 1.1).toFixed(2);
+          const radius = Math.max(0.35, 2 * (1 - progress * 0.65));
+          const opacity = Math.max(0, 0.85 - progress).toFixed(2);
           c.setAttribute("cx", p.x.toFixed(1));
           c.setAttribute("cy", p.y.toFixed(1));
           c.setAttribute("r", radius.toFixed(2));
@@ -149,7 +139,7 @@ function CustomCursor() {
       {/* Orange dot — separate element, tracks raw mouse instantly (no lerp) */}
       <div
         ref={dotRef}
-        className="pointer-events-none fixed left-0 top-0 z-[10000] hidden h-2 w-2 rounded-full bg-orange-500 md:block"
+        className="pointer-events-none fixed left-0 top-0 z-[10000] hidden h-1 w-1 rounded-full bg-orange-500 md:block"
         style={{ willChange: "transform" }}
       />
 
@@ -173,15 +163,6 @@ function CustomCursor() {
         className="pointer-events-none fixed left-0 top-0 z-[9998] hidden h-full w-full md:block"
         style={{ willChange: "contents" }}
       >
-        <path
-          d=""
-          fill="none"
-          stroke="#ff5a00"
-          strokeWidth="1.2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          opacity="0.65"
-        />
         {Array.from({ length: TRAIL_LEN }).map((_, i) => (
           <circle key={i} cx="0" cy="0" r="0" fill="#ff5a00" opacity="0" />
         ))}

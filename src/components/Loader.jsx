@@ -68,9 +68,9 @@ export default function Loader({ onComplete }) {
             <p className="font-serif italic text-2xl md:text-4xl text-[var(--ink)]">
                 {GREETINGS[greetingIndex]}
             </p>
-            <div className="absolute bottom-8 right-8 md:bottom-12 md:right-12 flex items-end font-display text-5xl md:text-7xl text-[var(--ink)]">
-                <span ref={percentRef}>0</span>
-                <span className="text-2xl md:text-3xl ml-1 mb-1">%</span>
+            <div className="absolute bottom-8 right-8 md:bottom-12 md:right-12 flex items-end font-display text-6xl font-light tracking-[0.02em] md:text-8xl text-[var(--ink)]" style={{ textShadow: "none" }}>
+                <span ref={percentRef} style={{ textShadow: "none" }}>0</span>
+                <span className="text-2xl md:text-3xl ml-1 mb-1" style={{ textShadow: "none" }}>%</span>
             </div>
             <div className="absolute bottom-8 left-8 md:bottom-12 md:left-12 text-xs tracking-[0.3em] text-[var(--ink-dim)]">
                 LOADING PORTFOLIO

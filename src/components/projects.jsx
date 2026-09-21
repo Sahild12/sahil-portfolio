@@ -49,16 +49,21 @@ function Projects() {
     });
   };
 
+  const handleProjectLeave = () => {
+    setActiveProject(null);
+  };
+
   return (
     <section
       id="projects"
-      className="relative min-h-screen bg-black px-8 py-28 md:px-[8vw] md:py-36"
+      onMouseLeave={handleProjectLeave}
+      className="relative bg-black px-8 py-16 pb-12 md:px-[8vw] md:py-20 md:pb-14"
     >
       <div className="mx-auto max-w-[1500px]">
 
         {/* Section heading */}
-        <div className="mb-20">
-          <div className="mb-6 flex items-center gap-3">
+        <div className="mb-12">
+          <div className="mb-4 flex items-center gap-3">
             <span className="h-2 w-2 rounded-full bg-orange-500" />
 
             <span className="text-sm tracking-[0.08em] text-white/70">
@@ -81,7 +86,7 @@ function Projects() {
                 key={project.id}
                 href={project.link}
                 onMouseEnter={() => setActiveProject(project)}
-                onMouseLeave={() => setActiveProject(null)}
+                onMouseLeave={handleProjectLeave}
                 onMouseMove={handleMouseMove}
                 data-project-cursor
                 className="group relative grid min-h-[128px] grid-cols-[50px_1fr_auto_60px] items-center gap-4 border-b border-white/[0.08] transition-colors duration-300 md:grid-cols-[55px_1fr_240px_80px]"

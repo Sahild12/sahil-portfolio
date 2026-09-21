@@ -10,8 +10,9 @@ const technologies = [
   "Git",
 ];
 
-const TechMarquee = ({ items: marqueeItems = technologies }) => {
+const TechMarquee = ({ items: marqueeItems = technologies, direction = "left" }) => {
   const items = [...marqueeItems, ...marqueeItems];
+  const isReverse = direction === "right";
 
   return (
     <section
@@ -23,10 +24,10 @@ const TechMarquee = ({ items: marqueeItems = technologies }) => {
         <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-16 bg-gradient-to-r from-[#070707] to-transparent" />
         <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-16 bg-gradient-to-l from-[#070707] to-transparent" />
 
-        <div className="marquee-track flex items-center" aria-hidden="true">
+        <div className={`marquee-track ${isReverse ? "marquee-track-reverse" : ""} flex items-center`} aria-hidden="true">
           {items.map((technology, index) => (
             <span
-              className="flex shrink-0 items-center gap-8 px-6 font-display text-3xl tracking-[0.04em] text-[#d8caca] sm:text-4xl"
+              className="flex shrink-0 items-center gap-8 px-6 font-display text-3xl tracking-[0.04em] text-white sm:text-4xl"
               key={`${technology}-${index}`}
             >
               {technology}

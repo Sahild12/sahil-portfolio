@@ -56,6 +56,45 @@ a {
   }
 }
 
+@keyframes marquee-reverse {
+  from {
+    transform: translate3d(-50%, 0, 0);
+  }
+
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes whatsapp-vibrate {
+  0%,
+  85%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+
+  87% {
+    transform: translate3d(-4px, 0, 0);
+  }
+
+  89% {
+    transform: translate3d(4px, 0, 0);
+  }
+
+  91% {
+    transform: translate3d(-3px, 0, 0);
+  }
+
+  93% {
+    transform: translate3d(3px, 0, 0);
+  }
+}
+
+.whatsapp-vibrate {
+  animation: whatsapp-vibrate 3.5s ease-in-out infinite;
+  transform-origin: center;
+}
+
 .marquee-track {
   animation: marquee 65s linear infinite;
   backface-visibility: hidden;
@@ -63,8 +102,78 @@ a {
   will-change: transform;
 }
 
+.marquee-track-reverse {
+  animation: marquee-reverse 65s linear infinite;
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .marquee-track {
+  .marquee-track,
+  .marquee-track-reverse,
+  .whatsapp-vibrate {
     animation-play-state: paused;
   }
+}
+.contact-outline {
+  color: transparent;
+  -webkit-text-stroke: 1.5px #d8caca;
+}
+
+.contact-background {
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(216, 202, 202, 0.09);
+}
+
+/* =====================================================
+   CONTACT OUTLINE TEXT
+===================================================== */
+
+.contact-outline {
+  color: transparent;
+  -webkit-text-stroke: 1.5px #d8caca;
+  text-stroke: 1.5px #d8caca;
+}
+
+
+/* =====================================================
+   CONTACT CURSOR DISTORTION
+===================================================== */
+
+.contact-distorted {
+  position: absolute;
+  inset: 0;
+
+  pointer-events: none;
+
+  filter: url("#contact-distortion");
+
+  opacity: 0;
+
+  mask-image: radial-gradient(
+    circle 90px at var(--mouse-x) var(--mouse-y),
+    black 0%,
+    black 30%,
+    transparent 75%
+  );
+
+  -webkit-mask-image: radial-gradient(
+    circle 90px at var(--mouse-x) var(--mouse-y),
+    black 0%,
+    black 30%,
+    transparent 75%
+  );
+}
+
+
+/* =====================================================
+   LARGE CONTACT BACKGROUND
+===================================================== */
+
+.contact-background {
+  color: transparent;
+
+  -webkit-text-stroke: 1px
+    rgba(216, 202, 202, 0.08);
+
+  text-stroke: 1px
+    rgba(216, 202, 202, 0.08);
 }
