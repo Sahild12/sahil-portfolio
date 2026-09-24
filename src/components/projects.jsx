@@ -1,4 +1,7 @@
 import { useState } from "react";
+import premierModelsImage from "../assets/premier-models.png";
+import citizenGrievanceImage from "../assets/citizen-grievance.png";
+import teaImage from "../assets/Tea.png";
 
 const projects = [
   {
@@ -11,27 +14,27 @@ const projects = [
   },
   {
     id: "02",
-    title: "AI Interview System",
-    category: "DEVELOPMENT - AI",
+    title: "Premier-Models",
+    category: "FRONTEND DEVELOPMENT",
     year: "2026",
-    image: "/projects/interview-system.jpg",
-    link: "#",
+    image: premierModelsImage,
+    link: "https://premier-pro.vercel.app/",
   },
   {
     id: "03",
-    title: "FinPilot AI",
+    title: "Citizen Grievance Portal",
     category: "DEVELOPMENT - DESIGN",
     year: "2026",
-    image: "/projects/finpilot.jpg",
-    link: "#",
+    image: citizenGrievanceImage,
+    link: "https://jansevaa.netlify.app/",
   },
   {
     id: "04",
-    title: "Nirmal Developers",
+    title: "TEA-Luxury-Scroll-Driven-Website",
     category: "DESIGN - DEVELOPMENT",
     year: "2026",
-    image: "/projects/nirmal-developers.jpg",
-    link: "#",
+    image: teaImage,
+    link: "https://tea-luxury-scroll-driven-website.vercel.app/",
   },
 ];
 
@@ -169,7 +172,7 @@ function Projects() {
               className="block aspect-[16/10] w-full object-cover"
             />
 
-            <div className="absolute left-1/2 top-1/2 flex h-14 w-14 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-orange-500">
+            <div className="absolute left-1/2 top-1/2 flex h-14 w-14 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-orange-500 bg-black/20">
               <span className="h-2 w-2 rounded-full bg-orange-500" />
             </div>
           </div>

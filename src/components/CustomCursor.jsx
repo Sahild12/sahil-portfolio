@@ -7,6 +7,12 @@ function CustomCursor() {
   const labelRef = useRef(null);
 
   useEffect(() => {
+    const mediaQuery = window.matchMedia("(pointer: fine) and (min-width: 768px)");
+
+    if (!mediaQuery.matches) {
+      return undefined;
+    }
+
     const mouse = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
     const ring = { x: mouse.x, y: mouse.y };
     const TRAIL_LEN = 40;

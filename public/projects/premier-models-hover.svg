@@ -1,0 +1,112 @@
+<svg width="1600" height="1000" viewBox="0 0 1600 1000" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#D7DDFB"/>
+      <stop offset="100%" stop-color="#E5E7F8"/>
+    </linearGradient>
+    <filter id="blur1" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="18"/>
+    </filter>
+    <filter id="blurSoft" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="10"/>
+    </filter>
+  </defs>
+
+  <rect width="1600" height="1000" fill="url(#sky)"/>
+
+  <g opacity="0.9">
+    <rect x="0" y="0" width="1600" height="86" fill="#F7F5F1"/>
+    <rect x="0" y="0" width="380" height="86" fill="#F5F3EE"/>
+    <rect x="380" y="0" width="310" height="86" fill="#F8F7F5"/>
+    <rect x="690" y="0" width="430" height="86" fill="#F8F7F5"/>
+    <rect x="1120" y="0" width="480" height="86" fill="#F6F4F1"/>
+    <line x1="380" y1="0" x2="380" y2="86" stroke="#0E0E0E" stroke-width="2"/>
+    <line x1="690" y1="0" x2="690" y2="86" stroke="#0E0E0E" stroke-width="2"/>
+    <line x1="1120" y1="0" x2="1120" y2="86" stroke="#0E0E0E" stroke-width="2"/>
+
+    <text x="62" y="58" fill="#111111" font-family="Georgia, serif" font-size="48" font-style="italic" font-weight="700">Premier</text>
+    <text x="70" y="80" fill="#111111" font-family="Georgia, serif" font-size="12" letter-spacing="0.06em">MODEL MANAGEMENT</text>
+
+    <text x="520" y="52" fill="#111111" font-family="Georgia, serif" font-size="28" font-style="italic">Model</text>
+    <text x="920" y="52" fill="#111111" font-family="Georgia, serif" font-size="28" font-style="italic">Woman/Man</text>
+    <text x="1230" y="52" fill="#111111" font-family="Georgia, serif" font-size="28" font-style="italic">Agency/Blog/Information</text>
+
+    <circle cx="1510" cy="43" r="18" stroke="#111111" stroke-width="2.5" fill="none"/>
+    <line x1="1523" y1="56" x2="1548" y2="81" stroke="#111111" stroke-width="2.5" stroke-linecap="round"/>
+  </g>
+
+  <g opacity="0.85" filter="url(#blur1)">
+    <rect x="-20" y="515" width="340" height="560" fill="#0C4C22"/>
+    <g fill="#3F7D39">
+      <circle cx="90" cy="580" r="140"/>
+      <circle cx="200" cy="560" r="120"/>
+      <circle cx="315" cy="560" r="160"/>
+      <circle cx="440" cy="580" r="160"/>
+      <circle cx="520" cy="590" r="120"/>
+      <circle cx="610" cy="570" r="170"/>
+      <circle cx="680" cy="600" r="170"/>
+      <circle cx="760" cy="585" r="160"/>
+      <circle cx="860" cy="610" r="160"/>
+    </g>
+  </g>
+
+  <g opacity="0.9">
+    <rect x="960" y="560" width="480" height="330" fill="#D0B59B"/>
+    <rect x="1210" y="520" width="420" height="220" fill="#DCC9AF"/>
+    <rect x="1245" y="570" width="180" height="80" fill="#E6D8C6"/>
+    <rect x="1295" y="660" width="80" height="90" fill="#9B7B5B"/>
+    <rect x="1420" y="610" width="120" height="120" fill="#C99873"/>
+    <rect x="1520" y="650" width="100" height="80" fill="#E0C8A3"/>
+    <rect x="1090" y="630" width="160" height="210" fill="#E7D9C4"/>
+    <rect x="1040" y="660" width="120" height="170" fill="#CCB294"/>
+  </g>
+
+  <g opacity="0.6" filter="url(#blurSoft)">
+    <rect x="790" y="450" width="540" height="230" fill="#DAB89A"/>
+    <rect x="1040" y="465" width="300" height="250" fill="#C69B7B"/>
+  </g>
+
+  <g>
+    <path d="M800 370C810 325 835 285 876 275C915 266 947 281 968 309C986 333 1006 366 1004 413C1001 447 973 484 952 534L935 583C889 586 847 574 807 547L761 516C734 495 704 474 692 444C675 401 711 389 800 370Z" fill="#D6B7A8"/>
+    <path d="M744 530C781 512 828 498 890 513C949 527 1000 548 1041 580L1041 698C1004 723 957 742 900 748C830 755 772 720 719 668L709 635C705 594 718 565 744 530Z" fill="#8B6F5B" opacity="0.96"/>
+    <path d="M850 385C845 369 851 347 869 337C890 325 918 325 938 340C956 354 961 379 955 399C947 427 914 446 885 441C866 437 860 408 850 385Z" fill="#D7C6B8"/>
+    <path d="M880 338C857 328 844 306 845 285C847 264 863 249 886 245C924 238 955 270 965 308C972 335 959 367 936 377C914 386 892 370 880 338Z" fill="#F3E7DF"/>
+    <path d="M845 303C854 271 881 245 914 234C946 224 982 229 1004 251C1026 273 1039 318 1032 353C1018 335 1005 324 980 317C949 308 910 314 879 321L845 303Z" fill="#F8EFEA"/>
+    <path d="M886 261C904 250 922 248 943 251C968 255 990 270 1004 294C1008 301 1010 310 1011 318C982 343 947 346 908 340C888 336 875 329 865 319C869 293 875 274 886 261Z" fill="#E9CFD0"/>
+
+    <ellipse cx="916" cy="344" rx="58" ry="68" fill="#F4D0C0"/>
+    <path d="M893 332C892 292 913 264 955 263C995 261 1019 292 1017 331C1016 349 1011 370 995 386L992 413C978 401 967 405 949 422L928 408C902 392 896 368 893 332Z" fill="#F4D0C0"/>
+    <path d="M890 359C920 358 936 362 967 369C980 356 987 337 989 318C991 276 967 241 922 235C892 230 865 241 848 261C839 269 833 281 831 294C838 326 859 352 890 359Z" fill="#F7EFEE"/>
+    <path d="M886 308C876 280 885 256 908 245C923 236 949 233 968 241C983 247 1000 259 1008 280C1016 301 1017 332 1004 350C983 377 944 388 910 381C888 377 876 348 886 308Z" fill="#F0E4E4" opacity="0.72"/>
+    <path d="M892 338C918 332 936 332 961 339C963 363 952 390 938 408C930 418 915 421 900 421C882 422 868 411 860 394C850 373 862 350 892 338Z" fill="#EDD0C6"/>
+    <path d="M910 334C917 329 926 328 934 330C939 332 943 336 946 341C939 360 928 373 910 380C894 369 885 353 886 338C892 334 901 331 910 334Z" fill="#E7C5B6"/>
+    <path d="M883 441C912 481 953 497 1014 505L1020 707C991 722 949 738 891 741C837 744 792 731 750 705L732 595C761 526 821 472 883 441Z" fill="#CDB8A9"/>
+    <path d="M845 620C882 611 915 608 952 612C977 615 1008 624 1030 641L1039 712C1010 724 975 735 931 741C890 747 851 742 809 719L786 648C801 634 819 625 845 620Z" fill="#E9D5BE"/>
+    <path d="M785 560C824 532 861 524 884 521C903 517 932 517 969 537C961 587 946 631 930 655C911 684 885 700 850 707C808 716 767 690 730 650C711 630 702 613 695 592C703 579 744 565 785 560Z" fill="#F3E7D9" opacity="0.88"/>
+    <path d="M747 653C784 650 839 640 873 654C832 696 772 724 708 716L664 698C665 675 700 663 747 653Z" fill="#C79E73"/>
+    <path d="M1037 518C1066 508 1099 535 1118 590L1090 711C1044 719 1004 691 951 649L923 607C932 565 966 536 1004 528L1037 518Z" fill="#A97A5F"/>
+  </g>
+
+  <g>
+    <path d="M746 580C746 561 761 546 780 546H912C928 546 942 557 946 573C961 616 963 677 957 718C955 731 943 742 929 742H790C778 742 767 733 764 720L746 580Z" fill="#E9D5BE"/>
+    <path d="M924 580C969 573 1013 580 1044 601L1113 661C1116 664 1117 669 1113 673L1086 703C1082 708 1075 708 1070 704L996 646C970 629 939 621 900 620L924 580Z" fill="#8F705E" opacity="0.9"/>
+    <path d="M1041 596C1087 602 1122 626 1146 671L1146 713C1115 730 1081 743 1041 749L1013 672L1041 596Z" fill="#B89175"/>
+  </g>
+
+  <g opacity="0.8" filter="url(#blurSoft)">
+    <rect x="410" y="450" width="250" height="220" fill="#D8DAEE"/>
+    <rect x="540" y="470" width="270" height="220" fill="#D7D7D9"/>
+    <rect x="730" y="460" width="200" height="210" fill="#D9C2AF"/>
+    <rect x="880" y="500" width="260" height="170" fill="#D5DDF0"/>
+  </g>
+
+  <g opacity="0.9">
+    <text x="110" y="765" fill="#F2F0ED" font-family="cursive, "Segoe Script", serif" font-size="102" font-style="italic" letter-spacing="-0.04em">Photography</text>
+    <text x="114" y="865" fill="#F2F0ED" font-family="cursive, "Segoe Script", serif" font-size="100" font-style="italic" letter-spacing="-0.04em">and films</text>
+  </g>
+
+  <g>
+    <circle cx="1465" cy="780" r="72" fill="rgba(255,255,255,0.25)" stroke="#F0EAE2" stroke-width="4"/>
+    <text x="1442" y="793" fill="#F0EAE2" font-family="Georgia, serif" font-size="38" font-style="italic">01</text>
+  </g>
+</svg>

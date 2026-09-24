@@ -254,12 +254,6 @@ function Contact() {
       </svg>
 
       {/* =================================================
-          RIGHT ORANGE LINE
-      ================================================= */}
-
-      <div className="absolute right-0 top-0 h-full w-[3px] bg-orange-500" />
-
-      {/* =================================================
           MAIN CONTAINER
       ================================================= */}
 
@@ -315,16 +309,16 @@ function Contact() {
           className="mt-28 border-y border-white/[0.08] py-6"
         >
           <a
-            href="mailto:your.email@gmail.com"
+            href="mailto:dalavisahil95@gmail.com"
             className="group flex items-center gap-4"
           >
             <FiMail
               size={22}
-              className="text-orange-500 transition duration-300 group-hover:scale-110"
+              className="shrink-0 text-orange-500 transition duration-300 group-hover:scale-110"
             />
 
-            <span className="text-lg text-[#d8caca] transition duration-300 group-hover:text-orange-500 md:text-2xl">
-              dalavisahil95email@gmail.com
+            <span className="break-all text-lg text-[#d8caca] transition duration-300 group-hover:text-orange-500 md:text-2xl">
+              dalavisahil95@gmail.com
             </span>
           </a>
         </div>
@@ -339,7 +333,7 @@ function Contact() {
         >
           {/* LINKEDIN */}
           <a
-            href="https://www.linkedin.com/"
+            href="https://www.linkedin.com/in/sahil-dalvi-47b876367/"
             target="_blank"
             rel="noreferrer"
             className="group inline-flex items-center gap-3 rounded-full border border-white/15 px-7 py-4 text-sm tracking-[0.1em] text-[#d8caca] transition duration-300 hover:border-orange-500 hover:text-orange-500"
@@ -354,7 +348,7 @@ function Contact() {
 
           {/* DOWNLOAD CV */}
           <a
-            href="/resume.pdf"
+            href="/Sahil Dalavi.pdf"
             download
             className="group inline-flex items-center gap-3 rounded-full bg-orange-500 px-7 py-4 text-sm tracking-[0.1em] text-black transition duration-300 hover:scale-[1.03] hover:bg-orange-400"
           >

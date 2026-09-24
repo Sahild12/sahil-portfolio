@@ -18,12 +18,25 @@
 html {
   scroll-behavior: smooth;
   background: #000;
+  overflow-x: hidden;
 }
 
 body {
   margin: 0;
   min-width: 320px;
+  max-width: 100vw;
+  overflow-x: hidden;
   background: #000;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
 }
 
 @media (min-width: 768px) {
@@ -44,6 +57,15 @@ a {
 
 .font-body {
   font-family: "Inter", sans-serif;
+}
+
+.hero-image-shell {
+  clip-path: circle(0% at 50% 50%);
+  transform-origin: center center;
+}
+
+.hero-image {
+  transform-origin: center center;
 }
 
 @keyframes marquee {
@@ -114,11 +136,13 @@ a {
   }
 }
 .contact-outline {
+  font-family: "Bebas Neue", sans-serif;
   color: transparent;
   -webkit-text-stroke: 1.5px #d8caca;
 }
 
 .contact-background {
+  font-family: "Bebas Neue", sans-serif;
   color: transparent;
   -webkit-text-stroke: 1px rgba(216, 202, 202, 0.09);
 }
@@ -176,4 +200,12 @@ a {
 
   text-stroke: 1px
     rgba(216, 202, 202, 0.08);
+}
+
+@media (max-width: 640px) {
+  footer .footer-center {
+    position: static;
+    transform: none;
+    margin-top: 12px;
+  }
 }

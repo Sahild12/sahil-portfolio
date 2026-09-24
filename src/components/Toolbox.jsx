@@ -1,9 +1,3 @@
-import { useLayoutEffect, useRef } from "react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-gsap.registerPlugin(ScrollTrigger);
-
 const tools = [
   "React.js",
   "Node.js",
@@ -20,110 +14,13 @@ const tools = [
 ];
 
 function Toolbox() {
-  const sectionRef = useRef(null);
-
-  const titleRef = useRef(null);
-  const toolsRef = useRef([]);
-  const bottomLineRef = useRef(null);
-
-  useLayoutEffect(() => {
-    const ctx = gsap.context(() => {
-
-      // Initial state
-      gsap.set(titleRef.current, {
-        opacity: 0,
-        y: 55,
-      });
-
-      gsap.set(toolsRef.current, {
-        opacity: 0,
-        y: 18,
-      });
-
-      gsap.set(bottomLineRef.current, {
-        scaleX: 0,
-        transformOrigin: "left center",
-      });
-
-      // Timeline
-      const tl = gsap.timeline({
-        paused: true,
-      });
-
-      // Toolbox heading
-      tl.to(
-        titleRef.current,
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.75,
-          ease: "power3.out",
-        },
-        "-=0.30"
-      );
-
-      // Toolbox items
-      tl.to(
-        toolsRef.current,
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.42,
-          stagger: 0.065,
-          ease: "power3.out",
-        },
-        "-=0.35"
-      );
-
-      // Bottom line
-      tl.to(
-        bottomLineRef.current,
-        {
-          scaleX: 1,
-          duration: 0.75,
-          ease: "power2.inOut",
-        },
-        "-=0.20"
-      );
-
-      // Scroll behavior
-      const animationTrigger =
-        sectionRef.current.closest("[data-synchronized-sections]") ||
-        sectionRef.current;
-
-      ScrollTrigger.create({
-        trigger: animationTrigger,
-        start: "top 75%",
-        end: "bottom 25%",
-
-        onEnter: () => {
-          tl.restart();
-        },
-
-        onEnterBack: () => {
-          tl.restart();
-        },
-
-        onLeaveBack: () => {
-          tl.reverse();
-        },
-      });
-
-    }, sectionRef);
-
-    return () => ctx.revert();
-  }, []);
-
   return (
     <>
       <section
-        ref={sectionRef}
         id="toolbox"
+        data-my-stuff-section
         className="relative overflow-hidden bg-black px-8 py-28 pt-4 pb-0 md:px-[8vw] md:py-36 md:pt-6 md:pb-0"
       >
-      {/* RIGHT ORANGE LINE */}
-      <div className="absolute right-0 top-0 h-full w-[3px] bg-orange-500" />
-
       <div className="mx-auto max-w-[1500px]">
 
         {/* CONTENT */}
@@ -131,7 +28,7 @@ function Toolbox() {
 
           {/* TITLE */}
           <h2
-            ref={titleRef}
+            data-my-stuff-fade
             className="font-display text-7xl leading-none text-[#d8caca] md:text-8xl"
           >
             Toolbox
@@ -142,9 +39,7 @@ function Toolbox() {
             {tools.map((tool, index) => (
               <span
                 key={tool}
-                ref={(element) => {
-                  toolsRef.current[index] = element;
-                }}
+                data-my-stuff-fade
                 className="flex items-center"
               >
                 <span className="font-body text-xl text-[#d8caca] md:text-2xl">
@@ -162,7 +57,7 @@ function Toolbox() {
         {/* BOTTOM LINE */}
         <div className="mt-20 overflow-hidden">
           <div
-            ref={bottomLineRef}
+            data-my-stuff-line
             className="h-px w-full bg-[#d8caca]"
           />
         </div>

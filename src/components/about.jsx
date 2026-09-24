@@ -80,7 +80,8 @@ function About() {
 
                     {/* Download CV */}
                     <a
-                        href="/resume.pdf"
+                        href="/Sahil Dalavi.pdf"
+                        download
                         className="group mt-16 inline-flex items-center gap-3 text-sm tracking-[0.08em] text-[#d8cccc] transition duration-300 hover:text-orange-500"
                     >
                         <span className="h-2 w-2 rounded-full bg-orange-500 transition duration-300 group-hover:scale-125" />

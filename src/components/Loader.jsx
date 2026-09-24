@@ -13,6 +13,7 @@ const GREETINGS = [
 export default function Loader({ onComplete }) {
     const rootRef = useRef(null);
     const percentRef = useRef(null);
+    const progressBarRef = useRef(null);
     const [greetingIndex, setGreetingIndex] = useState(0);
     const counter = useRef({ value: 0 });
 
@@ -43,8 +44,14 @@ export default function Loader({ onComplete }) {
             duration: prefersReduced ? 0.2 : 2.1,
             ease: "power2.inOut",
             onUpdate: () => {
+                const currentValue = Math.floor(counter.current.value);
+
                 if (percentRef.current) {
-                    percentRef.current.textContent = Math.floor(counter.current.value);
+                    percentRef.current.textContent = currentValue;
+                }
+
+                if (progressBarRef.current) {
+                    progressBarRef.current.style.width = `${currentValue}%`;
                 }
             },
         });
@@ -72,8 +79,16 @@ export default function Loader({ onComplete }) {
                 <span ref={percentRef} style={{ textShadow: "none" }}>0</span>
                 <span className="text-2xl md:text-3xl ml-1 mb-1" style={{ textShadow: "none" }}>%</span>
             </div>
-            <div className="absolute bottom-8 left-8 md:bottom-12 md:left-12 text-xs tracking-[0.3em] text-[var(--ink-dim)]">
+            <div className="absolute bottom-12 left-8 md:bottom-16 md:left-12 text-xs tracking-[0.3em] text-[var(--ink-dim)]">
                 LOADING PORTFOLIO
+            </div>
+
+            <div className="absolute bottom-8 left-8 right-8 h-[2px] overflow-hidden bg-white/10 md:bottom-12 md:left-12 md:right-12">
+                <div
+                    ref={progressBarRef}
+                    className="h-full bg-orange-500 transition-[width] duration-75 ease-linear"
+                    style={{ width: "0%" }}
+                />
             </div>
         </div>
     );

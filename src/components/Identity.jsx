@@ -22,9 +22,6 @@ function Identity() {
       id="identity"
       className="relative min-h-screen overflow-hidden bg-black"
     >
-      {/* Right orange line */}
-      <div className="absolute right-0 top-0 h-full w-[3px] bg-orange-500" />
-
       {/* Section label */}
       <div className="absolute left-[8vw] top-20 z-10 flex items-center gap-3">
         <span className="h-2 w-2 rounded-full bg-orange-500" />
