@@ -1,377 +1,351 @@
-import { useLayoutEffect, useRef, useState } from "react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import {
-  FiArrowUpRight,
-  FiDownload,
-  FiMail,
-} from "react-icons/fi";
-
-gsap.registerPlugin(ScrollTrigger);
+import { useEffect, useRef, useState } from "react";
+import { motion, useInView } from "framer-motion";
+import { FiArrowUpRight, FiDownload } from "react-icons/fi";
+import Magnetic from "./Magnetic";
 
 /* =========================================================
-   DISTORTED TEXT COMPONENT
+   SCRAMBLE / DECODE TEXT COMPONENT
 ========================================================= */
 
-function DistortedText({
-  children,
+function ScrambleText({
+  text,
+  trigger,
+  delay = 0,
+  duration = 1600,
   className = "",
-  outline = false,
+  style = {},
 }) {
-  const textRef = useRef(null);
+  const [displayText, setDisplayText] = useState(text);
+  const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*";
 
-  const [mouse, setMouse] = useState({
-    x: -500,
-    y: -500,
-  });
+  useEffect(() => {
+    if (!trigger) {
+      setDisplayText(text);
+      return;
+    }
 
-  const handleMouseMove = (event) => {
-    if (!textRef.current) return;
+    let iteration = 0;
+    const intervalTime = Math.floor(duration / 45);
+    let timeoutId;
+    let intervalId;
 
-    const rect = textRef.current.getBoundingClientRect();
+    timeoutId = setTimeout(() => {
+      intervalId = setInterval(() => {
+        iteration++;
 
-    setMouse({
-      x: event.clientX - rect.left,
-      y: event.clientY - rect.top,
-    });
-  };
+        const progress = iteration / 45;
+        const revealProgress = Math.max(0, (progress - 0.25) / 0.75);
+        const revealedCount = Math.floor(
+          revealProgress * text.length
+        );
 
-  const handleMouseLeave = () => {
-    setMouse({
-      x: -500,
-      y: -500,
-    });
+        const randomized = text
+          .split("")
+          .map((char, index) =>
+            char === " "
+              ? " "
+              : index < revealedCount
+                ? text[index]
+                : chars[Math.floor(Math.random() * chars.length)]
+          )
+          .join("");
+
+        setDisplayText(randomized);
+
+        if (iteration >= 45) {
+          clearInterval(intervalId);
+          setDisplayText(text);
+        }
+      }, intervalTime);
+    }, delay * 1000);
+
+    return () => {
+      clearTimeout(timeoutId);
+
+      if (intervalId) {
+        clearInterval(intervalId);
+      }
+    };
+  }, [trigger, text, delay, duration]);
+
+  const handleMouseEnter = () => {
+    let iteration = 0;
+
+    const intervalId = setInterval(() => {
+      iteration++;
+
+      const progress = iteration / 35;
+      const revealProgress = Math.max(0, (progress - 0.25) / 0.75);
+      const revealedCount = Math.floor(
+        revealProgress * text.length
+      );
+
+      const randomized = text
+        .split("")
+        .map((char, index) =>
+          char === " "
+            ? " "
+            : index < revealedCount
+              ? text[index]
+              : chars[Math.floor(Math.random() * chars.length)]
+        )
+        .join("");
+
+      setDisplayText(randomized);
+
+      if (iteration >= 35) {
+        clearInterval(intervalId);
+        setDisplayText(text);
+      }
+    }, 35);
   };
 
   return (
-    <div
-      ref={textRef}
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
-      className={`relative ${className}`}
-      style={{
-        "--mouse-x": `${mouse.x}px`,
-        "--mouse-y": `${mouse.y}px`,
-      }}
+    <span
+      onMouseEnter={handleMouseEnter}
+      className={`inline-block ${className}`}
+      style={style}
     >
-      {/* NORMAL TEXT */}
-      <div
-        className={`relative z-10 ${
-          outline ? "contact-outline" : ""
-        }`}
-      >
-        {children}
-      </div>
-
-      {/* DISTORTED TEXT */}
-      <div
-        className={`contact-distorted absolute inset-0 z-20 ${
-          outline ? "contact-outline" : ""
-        }`}
-      >
-        {children}
-      </div>
-    </div>
+      {displayText}
+    </span>
   );
 }
 
 /* =========================================================
    CONTACT COMPONENT
+   Footer removed because it is now a separate component.
 ========================================================= */
 
 function Contact() {
-  const sectionRef = useRef(null);
+  const containerRef = useRef(null);
 
-  const labelRef = useRef(null);
-  const titleRef = useRef(null);
-  const togetherRef = useRef(null);
-  const emailRef = useRef(null);
-  const buttonsRef = useRef(null);
-  const backgroundRef = useRef(null);
+  const isInView = useInView(containerRef, {
+    amount: 0.2,
+    once: false,
+  });
 
-  useLayoutEffect(() => {
-    const ctx = gsap.context(() => {
-      /* -----------------------------------------------
-         INITIAL STATES
-      ------------------------------------------------ */
+  const [copied, setCopied] = useState(false);
 
-      gsap.set(labelRef.current, {
-        opacity: 0,
-        y: 20,
-      });
-
-      gsap.set(titleRef.current, {
-        opacity: 0,
-        y: 80,
-      });
-
-      gsap.set(togetherRef.current, {
-        opacity: 0,
-        y: 80,
-      });
-
-      gsap.set(emailRef.current, {
-        opacity: 0,
-        y: 35,
-      });
-
-      gsap.set(buttonsRef.current, {
-        opacity: 0,
-        y: 30,
-      });
-
-      gsap.set(backgroundRef.current, {
-        opacity: 0,
-        y: 70,
-      });
-
-      /* -----------------------------------------------
-         TIMELINE
-      ------------------------------------------------ */
-
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top 75%",
-          end: "bottom 25%",
-          toggleActions: "play none none reverse",
-        },
-      });
-
-      // 01. Label
-      tl.to(labelRef.current, {
-        opacity: 1,
-        y: 0,
-        duration: 0.45,
-        ease: "power3.out",
-      });
-
-      // 02. LET'S WORK
-      tl.to(
-        titleRef.current,
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.9,
-          ease: "power3.out",
-        },
-        "-=0.15"
-      );
-
-      // 03. TOGETHER
-      tl.to(
-        togetherRef.current,
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.9,
-          ease: "power3.out",
-        },
-        "-=0.65"
-      );
-
-      // 04. Email
-      tl.to(
-        emailRef.current,
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.6,
-          ease: "power3.out",
-        },
-        "-=0.35"
-      );
-
-      // 05. Buttons
-      tl.to(
-        buttonsRef.current,
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.55,
-          ease: "power3.out",
-        },
-        "-=0.3"
-      );
-
-      // 06. Background CONTACT
-      tl.to(
-        backgroundRef.current,
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.8,
-          ease: "power3.out",
-        },
-        "-=0.35"
-      );
-
-      ScrollTrigger.refresh();
-    }, sectionRef);
-
-    return () => ctx.revert();
-  }, []);
+  const emailAddress = "dalavisahil95@gmail.com";
 
   return (
     <section
-      ref={sectionRef}
       id="contact"
-      className="relative min-h-screen overflow-hidden bg-black px-8 pt-12 pb-28 md:px-[8vw] md:pt-16 md:pb-32"
+      ref={containerRef}
+      className="relative w-full overflow-hidden text-[#f1dada]"
     >
-      {/* =================================================
-          SVG DISTORTION FILTER
-      ================================================= */}
+      <div className="relative mx-auto flex w-full max-w-7xl flex-col px-6 py-16 sm:px-10 sm:py-24 md:px-12 lg:px-16 lg:py-28 xl:px-20">
 
-      <svg
-        className="pointer-events-none absolute h-0 w-0"
-        aria-hidden="true"
-      >
-        <defs>
-          <filter
-            id="contact-distortion"
-            x="-20%"
-            y="-20%"
-            width="140%"
-            height="140%"
-          >
-            <feTurbulence
-              type="fractalNoise"
-              baseFrequency="0.012 0.08"
-              numOctaves="2"
-              seed="4"
-              result="noise"
-            />
-
-            <feDisplacementMap
-              in="SourceGraphic"
-              in2="noise"
-              scale="22"
-              xChannelSelector="R"
-              yChannelSelector="G"
-            />
-          </filter>
-        </defs>
-      </svg>
-
-      {/* =================================================
-          MAIN CONTAINER
-      ================================================= */}
-
-      <div className="relative mx-auto max-w-[1500px]">
-
-        {/* =================================================
-            SECTION LABEL
-        ================================================= */}
-
-        <div
-          ref={labelRef}
-          className="mb-14 flex items-center gap-3"
+        {/* Section Label */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={
+            isInView
+              ? { opacity: 1, y: 0 }
+              : { opacity: 0, y: 20 }
+          }
+          transition={{
+            duration: 0.6,
+            delay: 0.1,
+          }}
+          className="mb-8 flex items-center gap-2.5 sm:mb-12"
         >
-          <span className="h-2 w-2 rounded-full bg-orange-500" />
+          <span className="h-1.5 w-1.5 rounded-full bg-[#fa4a00]" />
 
-          <span className="text-sm tracking-[0.12em] text-[#87909f]">
+          <span className="font-body text-xs uppercase tracking-[0.18em] text-[#f1dada80] sm:text-sm">
             05 — GET IN TOUCH
           </span>
-        </div>
+        </motion.div>
 
-        {/* =================================================
-            MAIN HEADING
-        ================================================= */}
-
-        <div className="relative max-w-[1100px]">
+        {/* Scramble Animated Big Headings */}
+        <div className="relative z-10 mb-12 flex flex-col gap-1 sm:mb-16 md:mb-20">
 
           {/* LET'S WORK */}
-          <div ref={titleRef}>
-            <DistortedText
-              className="font-display text-[clamp(5rem,10vw,10rem)] leading-[0.82] tracking-[-0.02em] text-[#d8caca]"
+          <div className="overflow-hidden">
+            <motion.h1
+              initial={{
+                y: "100%",
+                opacity: 0,
+              }}
+              animate={
+                isInView
+                  ? {
+                    y: "0%",
+                    opacity: 1,
+                  }
+                  : {
+                    y: "100%",
+                    opacity: 0,
+                  }
+              }
+              transition={{
+                duration: 0.8,
+                delay: 0.2,
+                ease: [0.215, 0.61, 0.355, 1],
+              }}
+              className="font-display text-[clamp(4rem,10.2vw,10.8rem)] font-normal uppercase leading-[0.86] tracking-[-0.025em] text-[#d7c2c2]"
             >
-              LET&apos;S WORK
-            </DistortedText>
+              <ScrambleText
+                text="LET'S WORK"
+                trigger={isInView}
+                delay={0.2}
+                duration={1600}
+              />
+            </motion.h1>
           </div>
 
           {/* TOGETHER */}
-          <div ref={togetherRef}>
-            <DistortedText
-              outline
-              className="mt-5 font-display text-[clamp(5rem,10vw,10rem)] leading-[0.82] tracking-[-0.02em]"
+          <div className="overflow-hidden">
+            <motion.h1
+              initial={{
+                y: "100%",
+                opacity: 0,
+              }}
+              animate={
+                isInView
+                  ? {
+                    y: "0%",
+                    opacity: 1,
+                  }
+                  : {
+                    y: "100%",
+                    opacity: 0,
+                  }
+              }
+              transition={{
+                duration: 0.8,
+                delay: 0.35,
+                ease: [0.215, 0.61, 0.355, 1],
+              }}
+              style={{
+                WebkitTextStroke: "1px #d7c2c2",
+                color: "transparent",
+              }}
+              className="font-display text-[clamp(4rem,10.2vw,10.8rem)] font-normal uppercase leading-[0.86] tracking-[-0.025em]"
             >
-              TOGETHER.
-            </DistortedText>
+              <ScrambleText
+                text="TOGETHER."
+                trigger={isInView}
+                delay={0.35}
+                duration={1600}
+              />
+            </motion.h1>
           </div>
         </div>
 
-        {/* =================================================
-            EMAIL
-        ================================================= */}
-
-        <div
-          ref={emailRef}
-          className="mt-28 border-y border-white/[0.08] py-6"
+        {/* Email Row */}
+        <motion.div
+          initial={{
+            opacity: 0,
+            y: 30,
+          }}
+          animate={
+            isInView
+              ? {
+                opacity: 1,
+                y: 0,
+              }
+              : {
+                opacity: 0,
+                y: 30,
+              }
+          }
+          transition={{
+            duration: 0.6,
+            delay: 0.5,
+          }}
+          className="relative z-10 mb-12 flex w-full items-center justify-between border-y border-[#f1dada14] py-5 sm:mb-16 sm:py-6"
         >
-          <a
-            href="mailto:dalavisahil95@gmail.com"
-            className="group flex items-center gap-4"
-          >
-            <FiMail
-              size={22}
-              className="shrink-0 text-orange-500 transition duration-300 group-hover:scale-110"
-            />
+          <Magnetic strength={0.2}>
+            <button
+              onClick={() => {
+                navigator.clipboard.writeText(emailAddress);
 
-            <span className="break-all text-lg text-[#d8caca] transition duration-300 group-hover:text-orange-500 md:text-2xl">
-              dalavisahil95@gmail.com
-            </span>
-          </a>
-        </div>
+                setCopied(true);
 
-        {/* =================================================
-            BUTTONS
-        ================================================= */}
+                setTimeout(() => {
+                  setCopied(false);
+                }, 2500);
+              }}
+              data-cursor="copy"
+              data-cursor-text={copied ? "COPIED!" : "COPY"}
+              className="copyCursor group flex items-center gap-3 font-body text-base text-[#d7c2c2] transition-colors hover:text-[#f1dada] sm:text-lg md:text-xl"
+            >
+              <span className="text-[#fa4a00] transition-transform group-hover:scale-110">
+                ✉
+              </span>
 
-        <div
-          ref={buttonsRef}
-          className="mt-8 flex flex-wrap items-center gap-5"
+              <span className="tracking-wide">
+                {emailAddress}
+              </span>
+            </button>
+          </Magnetic>
+        </motion.div>
+
+        {/* Action Buttons */}
+        <motion.div
+          initial={{
+            opacity: 0,
+            y: 30,
+          }}
+          animate={
+            isInView
+              ? {
+                opacity: 1,
+                y: 0,
+              }
+              : {
+                opacity: 0,
+                y: 30,
+              }
+          }
+          transition={{
+            duration: 0.6,
+            delay: 0.6,
+          }}
+          className="relative z-10 flex flex-wrap items-center gap-4 sm:gap-6"
         >
-          {/* LINKEDIN */}
-          <a
-            href="https://www.linkedin.com/in/sahil-dalvi-47b876367/"
-            target="_blank"
-            rel="noreferrer"
-            className="group inline-flex items-center gap-3 rounded-full border border-white/15 px-7 py-4 text-sm tracking-[0.1em] text-[#d8caca] transition duration-300 hover:border-orange-500 hover:text-orange-500"
-          >
-            <span>LINKEDIN</span>
+          {/* LinkedIn */}
+          <Magnetic strength={0.35}>
+            <a
+              href="https://www.linkedin.com/in/sahil-dalvi-47b876367/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group inline-flex items-center gap-2 rounded-full border border-[#f1dada26] px-5 py-2.5 font-body text-xs font-medium uppercase tracking-[0.1em] text-[#D7C2C2] transition-all hover:border-[#fa4a00] hover:bg-[#fa4a000f] sm:px-6 sm:py-3 sm:text-sm"
+            >
+              <span>LINKEDIN</span>
 
-            <FiArrowUpRight
-              size={18}
-              className="transition duration-300 group-hover:translate-x-1 group-hover:-translate-y-1"
-            />
-          </a>
+              <FiArrowUpRight className="text-base transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+            </a>
+          </Magnetic>
 
-          {/* DOWNLOAD CV */}
-          <a
-            href="/Sahil Dalavi.pdf"
-            download
-            className="group inline-flex items-center gap-3 rounded-full bg-orange-500 px-7 py-4 text-sm tracking-[0.1em] text-black transition duration-300 hover:scale-[1.03] hover:bg-orange-400"
-          >
-            <span>DOWNLOAD CV</span>
+          {/* Download CV */}
+          <Magnetic strength={0.35}>
+            <a
+              href="/Sahil Dalavi.pdf"
+              download
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group inline-flex items-center gap-2 rounded-full bg-[#fa4a00] px-5 py-2.5 font-body text-xs font-medium uppercase tracking-[0.1em] text-black transition-all hover:bg-[#ff6b1a] sm:px-6 sm:py-3 sm:text-sm"
+            >
+              <span>DOWNLOAD CV</span>
 
-            <FiDownload
-              size={18}
-              className="transition duration-300 group-hover:translate-y-1"
-            />
-          </a>
-        </div>
+              <FiDownload className="text-base transition-transform group-hover:translate-y-0.5" />
+            </a>
+          </Magnetic>
+        </motion.div>
 
-        {/* =================================================
-            BACKGROUND CONTACT
-        ================================================= */}
-
+        {/* Giant Outlined CONTACT Background Watermark */}
         <div
-          ref={backgroundRef}
-          className="pointer-events-none absolute -bottom-16 right-[2vw] hidden select-none lg:block"
+          aria-hidden="true"
+          style={{
+            WebkitTextStroke:
+              "1px rgba(255, 255, 255, 0.07)",
+            color: "transparent",
+          }}
+          className="pointer-events-none absolute -bottom-2 right-6 z-0 select-none font-display text-[clamp(4.5rem,12vw,13rem)] font-bold uppercase leading-[0.85] tracking-[-0.02em] sm:right-10 md:right-12 lg:right-16 xl:right-20"
         >
-          <span className="contact-background font-display text-[18vw] leading-none">
-            CONTACT
-          </span>
+          CONTACT
         </div>
       </div>
     </section>

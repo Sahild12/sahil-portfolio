@@ -20,44 +20,69 @@ function CustomCursor() {
 
     let isHovering = false;
     let isProjectHovering = false;
+    let isCopyHovering = false;
     let activeLabel = "";       // text to show inside ring
     let currentScale = 1;
     let currentLabelOpacity = 0;
 
-    const TARGET_SCALE_HOVER = 1.7;  // slightly small magnify
+    const TARGET_SCALE_HOVER = 1.7;
+    const TARGET_SCALE_COPY = TARGET_SCALE_HOVER;
     const TARGET_SCALE_NORMAL = 1;
 
     const onMouseMove = (e) => {
       mouse.x = e.clientX;
       mouse.y = e.clientY;
+
+      const el = e.target.closest(
+        "a, button, [role='button'], input, textarea, select, label, [tabindex], [data-cursor], [data-cursor-text], .copyCursor"
+      );
+      if (el) {
+        const text = el.getAttribute("data-cursor-text");
+        if (text !== null) {
+          activeLabel = text;
+          if (labelRef.current) labelRef.current.textContent = activeLabel;
+        }
+      }
     };
 
     const onMouseOver = (e) => {
       const el = e.target.closest(
-        "a, button, [role='button'], input, textarea, select, label, [tabindex], [data-cursor]"
+        "a, button, [role='button'], input, textarea, select, label, [tabindex], [data-cursor], [data-cursor-text], .copyCursor"
       );
       if (el) {
         isHovering = true;
         isProjectHovering = el.hasAttribute("data-project-cursor");
+        isCopyHovering =
+          el.classList.contains("copyCursor") ||
+          el.dataset.cursor === "copy" ||
+          el.hasAttribute("data-cursor-text");
         if (ringRef.current) {
           ringRef.current.classList.remove("border-gray-500/50");
           ringRef.current.classList.add("border-orange-500/80");
+          ringRef.current.classList.toggle("cursor-copy-active", isCopyHovering);
         }
-        activeLabel = el.dataset.cursor || "";
+        activeLabel =
+          el.getAttribute("data-cursor-text") || el.dataset.cursor || "";
         if (labelRef.current) labelRef.current.textContent = activeLabel;
       }
     };
 
     const onMouseOut = (e) => {
       const el = e.target.closest(
-        "a, button, [role='button'], input, textarea, select, label, [tabindex], [data-cursor]"
+        "a, button, [role='button'], input, textarea, select, label, [tabindex], [data-cursor], [data-cursor-text], .copyCursor"
       );
+      if (el && e.relatedTarget instanceof Node && el.contains(e.relatedTarget)) {
+        return;
+      }
+
       if (el) {
         isHovering = false;
         isProjectHovering = false;
+        isCopyHovering = false;
         if (ringRef.current) {
           ringRef.current.classList.remove("border-orange-500/80");
           ringRef.current.classList.add("border-gray-500/50");
+          ringRef.current.classList.remove("cursor-copy-active");
         }
         activeLabel = "";
         if (labelRef.current) labelRef.current.textContent = "";
@@ -76,7 +101,11 @@ function CustomCursor() {
       ring.y += (mouse.y - ring.y) * 0.09;
 
       // Lerp scale
-      const targetScale = isHovering ? TARGET_SCALE_HOVER : TARGET_SCALE_NORMAL;
+      const targetScale = isCopyHovering
+        ? TARGET_SCALE_COPY
+        : isHovering
+          ? TARGET_SCALE_HOVER
+          : TARGET_SCALE_NORMAL;
       currentScale += (targetScale - currentScale) * 0.12;
 
       // Lerp label opacity — only show when there's a label text

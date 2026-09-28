@@ -1,7 +1,8 @@
 import { useRef, useState } from "react";
 
-export default function Magnetic({ children, pull = 0.3 }) {
+export default function Magnetic({ children, pull = 0.3, strength }) {
   const ref = useRef(null);
+  const factor = strength ?? pull ?? 0.3;
   const [position, setPosition] = useState({ x: 0, y: 0 });
 
   const handleMouse = (e) => {
@@ -10,7 +11,7 @@ export default function Magnetic({ children, pull = 0.3 }) {
     const { height, width, left, top } = ref.current.getBoundingClientRect();
     const middleX = clientX - (left + width / 2);
     const middleY = clientY - (top + height / 2);
-    setPosition({ x: middleX * pull, y: middleY * pull });
+    setPosition({ x: middleX * factor, y: middleY * factor });
   };
 
   const reset = () => {

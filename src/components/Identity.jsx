@@ -1,71 +1,150 @@
-import { motion, useScroll, useSpring, useTransform } from "framer-motion";
-import { useRef } from "react";
+import { useLayoutEffect, useRef } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 function Identity() {
   const sectionRef = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start end", "end start"],
-  });
-  const smoothProgress = useSpring(scrollYProgress, {
-    stiffness: 80,
-    damping: 24,
-    mass: 0.4,
-  });
-  const leftX = useTransform(smoothProgress, [0, 0.5, 1], [-180, 0, -180]);
-  const rightX = useTransform(smoothProgress, [0, 0.5, 1], [180, 0, 180]);
-  const wordOpacity = useTransform(smoothProgress, [0, 0.2, 0.5, 0.8, 1], [0, 0.7, 1, 0.7, 0]);
+
+  useLayoutEffect(() => {
+    const section = sectionRef.current;
+    if (!section) return undefined;
+
+    const reducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches;
+
+    if (reducedMotion) return undefined;
+
+    const ctx = gsap.context(() => {
+      const scrollConfig = {
+        trigger: section,
+        start: "top bottom",
+        end: "bottom top",
+        scrub: 1,
+        invalidateOnRefresh: true,
+      };
+
+      // FULLSTACK moves slightly to the right
+      gsap.to(".identity-top-left", {
+        x: "2.5vw",
+        ease: "none",
+        scrollTrigger: scrollConfig,
+      });
+
+      // DEVELOPER moves slightly to the left
+      gsap.to(".identity-top-right", {
+        x: "-2.5vw",
+        ease: "none",
+        scrollTrigger: scrollConfig,
+      });
+    }, section);
+
+    return () => ctx.revert();
+  }, []);
 
   return (
     <section
       ref={sectionRef}
       id="identity"
-      className="relative min-h-screen overflow-hidden bg-black"
+      className="relative h-[70vh] min-h-[560px] overflow-hidden bg-black text-white"
     >
-      {/* Section label */}
-      <div className="absolute left-[8vw] top-20 z-10 flex items-center gap-3">
-        <span className="h-2 w-2 rounded-full bg-orange-500" />
+      <div className="absolute inset-0">
+        {/* SECTION LABEL */}
+        <div className="absolute left-[8vw] top-[10%] z-10 flex items-center gap-3">
+          <span className="h-[6px] w-[6px] shrink-0 rounded-full bg-orange-500" />
 
-        <span className="text-sm tracking-[0.12em] text-white/60">
-          04 — IDENTITY
-        </span>
+          <span className="font-body text-[11px] font-medium uppercase tracking-[0.16em] text-white/55 md:text-xs">
+            03 — IDENTITY
+          </span>
+        </div>
+
+        {/* TOP ROW */}
+        <div className="absolute left-[8vw] right-[8vw] top-[28%] grid grid-cols-2 items-center gap-[5vw]">
+          {/* FULLSTACK */}
+          <h2
+            className="
+              identity-top-left
+              m-0
+              justify-self-start
+              font-body
+              text-[clamp(3rem,5.6vw,6.2rem)]
+              font-normal
+              uppercase
+              leading-[0.9]
+              tracking-[-0.035em]
+              text-[#f1eeee]
+              antialiased
+            "
+          >
+            FULLSTACK
+          </h2>
+
+          {/* DEVELOPER */}
+          <h2
+            className="
+              identity-top-right
+              m-0
+              justify-self-end
+              text-right
+              font-body
+              text-[clamp(3rem,5.6vw,6.2rem)]
+              font-normal
+              uppercase
+              leading-[0.9]
+              tracking-[-0.035em]
+              text-[#a6a8ad]
+              antialiased
+            "
+          >
+            DEVELOPER
+          </h2>
+        </div>
+
+        {/* BOTTOM ROW */}
+        <div className="absolute left-[8vw] right-[8vw] top-[62%] grid grid-cols-2 items-center gap-[5vw]">
+          {/* DESIGNER */}
+          <h2
+            className="
+              m-0
+              justify-self-start
+              font-body
+              text-[clamp(3rem,5.6vw,6.2rem)]
+              font-normal
+              uppercase
+              leading-[0.9]
+              tracking-[-0.035em]
+              text-[#a6a8ad]
+              antialiased
+            "
+          >
+            DESIGNER
+          </h2>
+
+          {/* WEB */}
+          <h2
+            className="
+              m-0
+              justify-self-end
+              text-right
+              font-body
+              text-[clamp(3rem,5.6vw,6.2rem)]
+              font-normal
+              uppercase
+              leading-[0.9]
+              tracking-[-0.035em]
+              text-[#f1eeee]
+              antialiased
+            "
+          >
+            WEB
+          </h2>
+        </div>
       </div>
 
-      {/* Identity words */}
-      <div className="relative min-h-screen">
-
-        {/* FULLSTACK */}
-        <motion.h2
-          style={{ x: leftX, opacity: wordOpacity }}
-          className="absolute left-[8vw] top-[28%] font-display text-[clamp(4rem,8vw,8rem)] leading-none tracking-[-0.02em] text-[#d8caca]"
-        >
-          FULLSTACK
-        </motion.h2>
-
-        {/* DEVELOPER */}
-        <motion.h2
-          style={{ x: rightX, opacity: wordOpacity }}
-          className="absolute right-[8vw] top-[28%] font-display text-[clamp(4rem,8vw,8rem)] leading-none tracking-[-0.02em] text-[#626b79]"
-        >
-          DEVELOPER
-        </motion.h2>
-
-        {/* DESIGNER */}
-        <motion.h2
-          style={{ x: leftX, opacity: wordOpacity }}
-          className="absolute left-[4vw] top-[52%] font-display text-[clamp(4rem,8vw,8rem)] leading-none tracking-[-0.02em] text-[#626b79]"
-        >
-          DESIGNER
-        </motion.h2>
-
-        {/* WEB */}
-        <motion.h2
-          style={{ x: rightX, opacity: wordOpacity }}
-          className="absolute right-[7vw] top-[52%] font-display text-[clamp(4rem,8vw,8rem)] leading-none tracking-[-0.02em] text-[#d8caca]"
-        >
-          WEB
-        </motion.h2>
-      </div>
+      {/* DIVIDER */}
+      <div className="absolute inset-x-0 bottom-0 h-px bg-white/[0.08]" />
     </section>
   );
 }

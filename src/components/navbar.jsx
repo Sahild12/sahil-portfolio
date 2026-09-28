@@ -1,8 +1,36 @@
-import { useState } from "react";
+import { useLayoutEffect, useRef, useState } from "react";
+import gsap from "gsap";
+import { FiX } from "react-icons/fi";
 import Magnetic from "./Magnetic";
+
+const menuBrandCharacters = Array.from("SAHIL DALAVI");
 
 function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const menuBrandRef = useRef(null);
+
+  useLayoutEffect(() => {
+    if (!menuOpen || !menuBrandRef.current) return undefined;
+
+    const characters = menuBrandRef.current.querySelectorAll(".menu-brand-char");
+    const context = gsap.context(() => {
+      gsap.fromTo(
+        characters,
+        { yPercent: 118, rotate: 3.5, opacity: 0 },
+        {
+          yPercent: 0,
+          rotate: 0,
+          opacity: 1,
+          duration: 0.9,
+          stagger: 0.035,
+          ease: "power4.out",
+          delay: 0.12,
+        }
+      );
+    }, menuBrandRef);
+
+    return () => context.revert();
+  }, [menuOpen]);
 
   return (
     <>
@@ -59,8 +87,23 @@ function Navbar() {
         <div className="relative z-10 flex h-full flex-col overflow-y-auto">
           {/* Header */}
           <div className="flex items-center justify-between px-4 py-6 sm:px-8 sm:py-8 md:px-[5vw]">
-            <div className="bg-[#070707] px-3 py-2.5 font-display text-sm tracking-[0.12em] text-[#d8caca] sm:px-4 sm:py-3 sm:text-lg">
-              SAHIL DALAVI<span className="text-orange-500">.</span>
+            <div
+              ref={menuBrandRef}
+              aria-label="Sahil Dalavi"
+              className="flex overflow-hidden bg-[#070707] px-3 py-2.5 font-display text-sm tracking-[0.12em] text-[#d8caca] sm:px-4 sm:py-3 sm:text-lg"
+            >
+              {menuBrandCharacters.map((character, index) => (
+                <span
+                  className="inline-block overflow-hidden"
+                  key={`${character}-${index}`}
+                  aria-hidden="true"
+                >
+                  <span className="menu-brand-char inline-block">
+                    {character === " " ? "\u00a0" : character}
+                  </span>
+                </span>
+              ))}
+              <span className="text-orange-500">.</span>
             </div>
 
             <div className="group absolute left-1/2 hidden -translate-x-1/2 items-center gap-2 rounded-full border border-white/20 px-3 py-1.5 transition-all duration-300 hover:border-green-500/50 hover:bg-green-500/5 hover:shadow-[0_0_20px_rgba(34,197,94,0.15)] md:flex">
@@ -74,15 +117,18 @@ function Navbar() {
               </span>
             </div>
 
-            <button
-              onClick={() => setMenuOpen(false)}
-              className="group flex h-10 w-10 items-center justify-center rounded-full border border-white/20 transition duration-300 hover:border-orange-500 sm:h-12 sm:w-12"
-              aria-label="Close menu"
-            >
-              <span className="text-2xl text-white transition group-hover:text-orange-500">
-                ×
-              </span>
-            </button>
+            <Magnetic pull={0.4}>
+              <button
+                onClick={() => setMenuOpen(false)}
+                className="group flex h-10 w-10 items-center justify-center rounded-full border border-white/20 transition duration-300 hover:border-orange-500 sm:h-12 sm:w-12"
+                aria-label="Close menu"
+              >
+                <FiX
+                  size={22}
+                  className="text-white transition duration-300 group-hover:rotate-90 group-hover:text-orange-500"
+                />
+              </button>
+            </Magnetic>
           </div>
 
           {/* Menu Items */}

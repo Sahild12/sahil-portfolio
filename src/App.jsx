@@ -2,6 +2,7 @@ import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import About from "./components/About";
 import TechMarquee from "./components/TechMarquee";
+import Identity from "./components/Identity";
 import CustomCursor from "./components/CustomCursor";
 import Projects from "./components/Projects";
 import WhatsAppButton from "./components/WhatsAppButton";
@@ -91,15 +92,17 @@ function App() {
           ]}
         />
         <Projects />
+        <Identity />
         <div ref={synchronizedSectionsRef} data-synchronized-sections>
           <Skills />
           <Toolbox />
           <Experience />
         </div>
         <Contact />
+        <Footer />
       </div>
 
-      <Footer />
+
       <WhatsAppButton />
     </main>
   );
