@@ -9,6 +9,7 @@ function Identity() {
 
   useLayoutEffect(() => {
     const section = sectionRef.current;
+
     if (!section) return undefined;
 
     const reducedMotion = window.matchMedia(
@@ -26,14 +27,20 @@ function Identity() {
         invalidateOnRefresh: true,
       };
 
-      // FULLSTACK moves slightly to the right
+      /*
+        FULLSTACK:
+        moves slightly toward the center from the left
+      */
       gsap.to(".identity-top-left", {
         x: "2.5vw",
         ease: "none",
         scrollTrigger: scrollConfig,
       });
 
-      // DEVELOPER moves slightly to the left
+      /*
+        DEVELOPER:
+        moves slightly toward the center from the right
+      */
       gsap.to(".identity-top-right", {
         x: "-2.5vw",
         ease: "none",
@@ -51,7 +58,10 @@ function Identity() {
       className="relative h-[70vh] min-h-[560px] overflow-hidden bg-black text-white"
     >
       <div className="absolute inset-0">
-        {/* SECTION LABEL */}
+
+        {/* =====================================================
+            SECTION LABEL
+        ===================================================== */}
         <div className="absolute left-[8vw] top-[10%] z-10 flex items-center gap-3">
           <span className="h-[6px] w-[6px] shrink-0 rounded-full bg-orange-500" />
 
@@ -60,23 +70,31 @@ function Identity() {
           </span>
         </div>
 
-        {/* TOP ROW */}
-        <div className="absolute left-[8vw] right-[8vw] top-[28%] grid grid-cols-2 items-center gap-[5vw]">
+        {/* =====================================================
+            TOP ROW
+        ===================================================== */}
+        <div className="absolute left-[7vw] right-[7vw] top-[28%] grid grid-cols-2 items-center gap-[6vw]">
+
           {/* FULLSTACK */}
           <h2
             className="
               identity-top-left
               m-0
               justify-self-start
-              font-body
-              text-[clamp(3rem,5.6vw,6.2rem)]
+              whitespace-nowrap
+              font-display
+              text-[clamp(3.5rem,7vw,7.5rem)]
               font-normal
               uppercase
-              leading-[0.9]
-              tracking-[-0.035em]
-              text-[#f1eeee]
+              leading-[0.82]
+              tracking-[-0.02em]
+              text-[#d8caca]
               antialiased
             "
+            style={{
+              fontFamily:
+                '"Bebas Neue", var(--font-display), "Arial Narrow", Impact, sans-serif',
+            }}
           >
             FULLSTACK
           </h2>
@@ -87,37 +105,50 @@ function Identity() {
               identity-top-right
               m-0
               justify-self-end
+              whitespace-nowrap
               text-right
-              font-body
-              text-[clamp(3rem,5.6vw,6.2rem)]
+              font-display
+              text-[clamp(3.5rem,7vw,7.5rem)]
               font-normal
               uppercase
-              leading-[0.9]
-              tracking-[-0.035em]
-              text-[#a6a8ad]
+              leading-[0.82]
+              tracking-[-0.02em]
+              text-[#626b79]
               antialiased
             "
+            style={{
+              fontFamily:
+                '"Bebas Neue", var(--font-display), "Arial Narrow", Impact, sans-serif',
+            }}
           >
             DEVELOPER
           </h2>
         </div>
 
-        {/* BOTTOM ROW */}
-        <div className="absolute left-[8vw] right-[8vw] top-[62%] grid grid-cols-2 items-center gap-[5vw]">
+        {/* =====================================================
+            BOTTOM ROW
+        ===================================================== */}
+        <div className="absolute left-[7vw] right-[7vw] top-[62%] grid grid-cols-2 items-center gap-[6vw]">
+
           {/* DESIGNER */}
           <h2
             className="
               m-0
               justify-self-start
-              font-body
-              text-[clamp(3rem,5.6vw,6.2rem)]
+              whitespace-nowrap
+              font-display
+              text-[clamp(3.5rem,7vw,7.5rem)]
               font-normal
               uppercase
-              leading-[0.9]
-              tracking-[-0.035em]
-              text-[#a6a8ad]
+              leading-[0.82]
+              tracking-[-0.02em]
+              text-[#626b79]
               antialiased
             "
+            style={{
+              fontFamily:
+                '"Bebas Neue", var(--font-display), "Arial Narrow", Impact, sans-serif',
+            }}
           >
             DESIGNER
           </h2>
@@ -127,23 +158,30 @@ function Identity() {
             className="
               m-0
               justify-self-end
+              whitespace-nowrap
               text-right
-              font-body
-              text-[clamp(3rem,5.6vw,6.2rem)]
+              font-display
+              text-[clamp(3.5rem,7vw,7.5rem)]
               font-normal
               uppercase
-              leading-[0.9]
-              tracking-[-0.035em]
-              text-[#f1eeee]
+              leading-[0.82]
+              tracking-[-0.02em]
+              text-[#d8caca]
               antialiased
             "
+            style={{
+              fontFamily:
+                '"Bebas Neue", var(--font-display), "Arial Narrow", Impact, sans-serif',
+            }}
           >
             WEB
           </h2>
         </div>
       </div>
 
-      {/* DIVIDER */}
+      {/* =====================================================
+          BOTTOM DIVIDER
+      ===================================================== */}
       <div className="absolute inset-x-0 bottom-0 h-px bg-white/[0.08]" />
     </section>
   );
