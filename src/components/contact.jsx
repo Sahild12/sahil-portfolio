@@ -322,10 +322,8 @@ function Contact() {
           {/* Download CV */}
           <Magnetic strength={0.35}>
             <a
-              href="/Sahil Dalavi.pdf"
-              download
-              target="_blank"
-              rel="noopener noreferrer"
+              href="/Sahil Resume.pdf"
+              download="Sahil Resume.pdf"
               className="group inline-flex items-center gap-2 rounded-full bg-[#fa4a00] px-5 py-2.5 font-body text-xs font-medium uppercase tracking-[0.1em] text-black transition-all hover:bg-[#ff6b1a] sm:px-6 sm:py-3 sm:text-sm"
             >
               <span>DOWNLOAD CV</span>
