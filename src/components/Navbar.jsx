@@ -1,9 +1,18 @@
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import gsap from "gsap";
-import { FiX } from "react-icons/fi";
 import Magnetic from "./Magnetic";
 
 const menuBrandCharacters = Array.from("SAHIL DALAVI");
+
+function MenuMark({ open }) {
+  return (
+    <span className="relative flex h-5 w-5 flex-col items-center justify-center">
+      <span className={`absolute block h-[2px] w-5 bg-white transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:bg-orange-500 ${open ? "rotate-45" : "-translate-y-[6px]"}`} />
+      <span className={`absolute block h-[2px] w-5 bg-white transition-all duration-300 ease-out group-hover:bg-orange-500 ${open ? "scale-x-0 opacity-0" : ""}`} />
+      <span className={`absolute block h-[2px] w-5 bg-white transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:bg-orange-500 ${open ? "-rotate-45" : "translate-y-[6px]"}`} />
+    </span>
+  );
+}
 
 function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -88,16 +97,12 @@ function Navbar() {
           <Magnetic pull={0.35}>
             <button
               type="button"
-              onClick={() => setMenuOpen(true)}
+              onClick={() => setMenuOpen((open) => !open)}
               className="group flex h-11 w-11 cursor-pointer items-center justify-center rounded-full border border-white/15 bg-[#070707]/90 backdrop-blur-xl transition-all duration-300 hover:border-orange-500 hover:shadow-[0_0_20px_rgba(249,115,22,0.25)] sm:h-12 sm:w-12"
-              aria-label="Open menu"
+              aria-label={menuOpen ? "Close menu" : "Open menu"}
               aria-expanded={menuOpen}
             >
-              <div className="flex flex-col gap-[5px]">
-                <span className="block h-[2px] w-5 bg-white transition-colors duration-300 group-hover:bg-orange-500" />
-                <span className="block h-[2px] w-5 bg-white transition-colors duration-300 group-hover:bg-orange-500" />
-                <span className="block h-[2px] w-5 bg-white transition-colors duration-300 group-hover:bg-orange-500" />
-              </div>
+              <MenuMark open={menuOpen} />
             </button>
           </Magnetic>
         </div>
@@ -105,9 +110,9 @@ function Navbar() {
 
       {/* FULLSCREEN MENU */}
       <div
-        className={`fixed inset-0 z-[1001] flex flex-col bg-black transition-all duration-500 ${menuOpen
-          ? "pointer-events-auto opacity-100"
-          : "pointer-events-none opacity-0"
+        className={`fixed inset-0 z-[1001] flex flex-col bg-black transition-[opacity,transform] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${menuOpen
+          ? "pointer-events-auto translate-y-0 opacity-100"
+          : "pointer-events-none translate-y-3 opacity-0"
           }`}
         aria-hidden={!menuOpen}
       >
@@ -155,10 +160,7 @@ function Navbar() {
                 className="group flex h-11 w-11 cursor-pointer items-center justify-center rounded-full border border-white/15 bg-[#070707] transition-all duration-300 hover:border-orange-500 hover:shadow-[0_0_20px_rgba(249,115,22,0.25)] sm:h-12 sm:w-12"
                 aria-label="Close menu"
               >
-                <FiX
-                  size={22}
-                  className="text-white transition duration-300 group-hover:rotate-90 group-hover:text-orange-500"
-                />
+                <MenuMark open />
               </button>
             </Magnetic>
           </div>
