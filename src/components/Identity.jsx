@@ -55,14 +55,14 @@ function Identity() {
     <section
       ref={sectionRef}
       id="identity"
-      className="relative h-[70vh] min-h-[560px] overflow-hidden bg-black text-white"
+      className="relative h-[190px] min-h-[190px] overflow-hidden bg-black text-white md:h-[70vh] md:min-h-[560px]"
     >
       <div className="absolute inset-0">
 
         {/* =====================================================
             SECTION LABEL
         ===================================================== */}
-        <div className="absolute left-[8vw] top-[10%] z-10 flex items-center gap-3">
+        <div className="absolute left-[8vw] top-[18%] z-10 flex items-center gap-3 md:top-[10%]">
           <span className="h-[6px] w-[6px] shrink-0 rounded-full bg-orange-500" />
 
           <span className="font-body text-[11px] font-medium uppercase tracking-[0.16em] text-white/55 md:text-xs">
@@ -73,17 +73,17 @@ function Identity() {
         {/* =====================================================
             TOP ROW
         ===================================================== */}
-        <div className="absolute left-[7vw] right-[7vw] top-[28%] grid grid-cols-2 items-center gap-[6vw]">
+        <div className="absolute left-[6vw] right-[6vw] top-[38%] grid grid-cols-2 items-center gap-0 md:left-[7vw] md:right-[7vw] md:top-[28%] md:gap-[6vw]">
 
           {/* FULLSTACK */}
           <h2
             className="
               identity-top-left
               m-0
-              justify-self-start
+              justify-self-center md:justify-self-start
               whitespace-nowrap
               font-display
-              text-[clamp(3.5rem,7vw,7.5rem)]
+              text-[clamp(1.1rem,5.5vw,2rem)] md:text-[clamp(3.5rem,7vw,7.5rem)]
               font-normal
               uppercase
               leading-[0.82]
@@ -104,11 +104,11 @@ function Identity() {
             className="
               identity-top-right
               m-0
-              justify-self-end
+              justify-self-center md:justify-self-end
               whitespace-nowrap
-              text-right
+              text-center md:text-right
               font-display
-              text-[clamp(3.5rem,7vw,7.5rem)]
+              text-[clamp(1.1rem,5.5vw,2rem)] md:text-[clamp(3.5rem,7vw,7.5rem)]
               font-normal
               uppercase
               leading-[0.82]
@@ -128,16 +128,16 @@ function Identity() {
         {/* =====================================================
             BOTTOM ROW
         ===================================================== */}
-        <div className="absolute left-[7vw] right-[7vw] top-[62%] grid grid-cols-2 items-center gap-[6vw]">
+        <div className="absolute left-[6vw] right-[6vw] top-[60%] grid grid-cols-2 items-center gap-0 md:left-[7vw] md:right-[7vw] md:top-[62%] md:gap-[6vw]">
 
           {/* DESIGNER */}
           <h2
             className="
               m-0
-              justify-self-start
+              justify-self-center md:justify-self-start
               whitespace-nowrap
               font-display
-              text-[clamp(3.5rem,7vw,7.5rem)]
+              text-[clamp(1.1rem,5.5vw,2rem)] md:text-[clamp(3.5rem,7vw,7.5rem)]
               font-normal
               uppercase
               leading-[0.82]
@@ -157,11 +157,11 @@ function Identity() {
           <h2
             className="
               m-0
-              justify-self-end
+              justify-self-center md:justify-self-end
               whitespace-nowrap
-              text-right
+              text-center md:text-right
               font-display
-              text-[clamp(3.5rem,7vw,7.5rem)]
+              text-[clamp(1.1rem,5.5vw,2rem)] md:text-[clamp(3.5rem,7vw,7.5rem)]
               font-normal
               uppercase
               leading-[0.82]

@@ -6,6 +6,7 @@ import heroImage from "../assets/Sahil.png";
 
 const nameCharacters = Array.from("SAHIL DALAVI");
 const roleLines = ["CREATIVE", "FULLSTACK", "DEVELOPER"];
+const mobileRoleLines = ["CREATIVE FULLSTACK", "DEVELOPER"];
 
 function Hero({ isReady }) {
   const heroRef = useRef(null);
@@ -76,16 +77,16 @@ function Hero({ isReady }) {
     <section
       ref={heroRef}
       id="home"
-      className="relative min-h-screen overflow-hidden bg-black text-white"
+      className="relative min-h-0 overflow-hidden bg-black text-white md:min-h-screen"
       style={{ visibility: isReady ? "visible" : "hidden" }}
     >
       <div
         className="
-          mx-auto grid min-h-screen max-w-[1800px]
-          grid-cols-1 items-center
-          px-4 sm:px-8
+          mx-auto grid min-h-0 max-w-[1800px]
+          content-start grid-cols-1 items-center gap-2
+          px-4 pt-20 pb-6 sm:gap-3 sm:px-8
           md:grid-cols-[minmax(0,1.1fr)_minmax(320px,520px)_minmax(0,1.1fr)]
-          md:gap-5 md:px-[6vw]
+          md:min-h-screen md:content-center md:gap-5 md:px-[6vw] md:pt-0 md:pb-0
           lg:gap-7
         "
       >
@@ -96,7 +97,7 @@ function Hero({ isReady }) {
             className="
               hero-name whitespace-nowrap
               font-display
-              text-[clamp(2.8rem,5vw,5.3rem)]
+              text-[clamp(2rem,10vw,2.5rem)] md:text-[clamp(2.8rem,5vw,5.3rem)]
               leading-[0.88]
               tracking-[0.02em]
               text-[#d8caca]
@@ -117,7 +118,7 @@ function Hero({ isReady }) {
             ))}
           </h1>
 
-          <div className="mt-6 flex flex-col items-center gap-2 md:items-start">
+          <div className="mt-2 flex flex-col items-center gap-2 md:mt-6 md:items-start">
             <p className="hero-detail text-xs tracking-wide text-white/60 sm:text-sm">
               Based in Kolhapur, India
             </p>
@@ -137,7 +138,7 @@ function Hero({ isReady }) {
         </div>
 
         {/* CENTER IMAGE */}
-        <div className="order-2 flex w-full items-center justify-center py-8 sm:py-10 md:col-start-2 md:row-start-1 md:py-0">
+        <div className="flex w-full items-center justify-center py-1 sm:py-2 md:col-start-2 md:row-start-1 md:py-0">
           <motion.div
             initial={{ opacity: 0, scale: 0 }}
             animate={
@@ -153,8 +154,8 @@ function Hero({ isReady }) {
             className="
       group relative z-10
       aspect-square
-      h-64 w-64
-      sm:h-80 sm:w-80
+      h-[200px] w-[200px]
+      sm:h-56 sm:w-56
       md:h-[380px] md:w-[380px]
       lg:h-[440px] lg:w-[440px]
       xl:h-[500px] xl:w-[500px]
@@ -203,7 +204,24 @@ function Hero({ isReady }) {
         <div className="z-10 flex items-center justify-center md:justify-self-start md:pl-8">
           <h2
             aria-label="Creative Fullstack Developer"
+            className="font-display text-[clamp(1.7rem,7.5vw,2rem)] leading-[1.05] tracking-[0.02em] text-center text-[#d8caca] md:hidden"
+          >
+            {mobileRoleLines.map((line) => (
+              <span className="hero-role-line block overflow-hidden" key={line}>
+                {Array.from(line).map((character, index) => (
+                  <span className="inline-block overflow-hidden" key={`${line}-${character}-${index}`}>
+                    <span aria-hidden="true" className="hero-role-char inline-block will-change-transform">
+                      {character === " " ? "\u00a0" : character}
+                    </span>
+                  </span>
+                ))}
+              </span>
+            ))}
+          </h2>
+          <h2
+            aria-label="Creative Fullstack Developer"
             className="
+              hidden md:block
               font-display
               text-[clamp(2.8rem,5vw,5.3rem)]
               leading-[0.88]

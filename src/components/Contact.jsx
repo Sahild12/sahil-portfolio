@@ -134,7 +134,7 @@ function Contact() {
       ref={containerRef}
       className="relative w-full overflow-hidden text-[#f1dada]"
     >
-      <div className="relative mx-auto flex w-full max-w-7xl flex-col px-6 py-16 sm:px-10 sm:py-24 md:px-12 lg:px-16 lg:py-28 xl:px-20">
+      <div className="relative mx-auto flex w-full max-w-7xl flex-col px-5 pt-12 pb-14 sm:px-10 sm:py-24 md:px-12 lg:px-16 lg:py-28 xl:px-20">
 
         {/* Section Label */}
         <motion.div
@@ -148,7 +148,7 @@ function Contact() {
             duration: 0.6,
             delay: 0.1,
           }}
-          className="mb-8 flex items-center gap-2.5 sm:mb-12"
+          className="mb-6 flex items-center gap-2.5 sm:mb-12"
         >
           <span className="h-1.5 w-1.5 rounded-full bg-[#fa4a00]" />
 
@@ -158,7 +158,7 @@ function Contact() {
         </motion.div>
 
         {/* Scramble Animated Big Headings */}
-        <div className="relative z-10 mb-12 flex flex-col gap-1 sm:mb-16 md:mb-20">
+        <div className="relative z-10 mb-8 flex flex-col gap-1 sm:mb-16 md:mb-20">
 
           {/* LET'S WORK */}
           <div className="overflow-hidden">
@@ -183,7 +183,7 @@ function Contact() {
                 delay: 0.2,
                 ease: [0.215, 0.61, 0.355, 1],
               }}
-              className="font-display text-[clamp(4rem,10.2vw,10.8rem)] font-normal uppercase leading-[0.86] tracking-[-0.025em] text-[#d7c2c2]"
+              className="font-display text-[clamp(2.75rem,11vw,4rem)] font-normal uppercase leading-[0.86] tracking-[-0.025em] text-[#d7c2c2] md:text-[clamp(4rem,10.2vw,10.8rem)]"
             >
               <ScrambleText
                 text="LET'S WORK"
@@ -221,7 +221,7 @@ function Contact() {
                 WebkitTextStroke: "1px #d7c2c2",
                 color: "transparent",
               }}
-              className="font-display text-[clamp(4rem,10.2vw,10.8rem)] font-normal uppercase leading-[0.86] tracking-[-0.025em]"
+              className="font-display text-[clamp(2.75rem,11vw,4rem)] font-normal uppercase leading-[0.86] tracking-[-0.025em] md:text-[clamp(4rem,10.2vw,10.8rem)]"
             >
               <ScrambleText
                 text="TOGETHER."
@@ -254,7 +254,7 @@ function Contact() {
             duration: 0.6,
             delay: 0.5,
           }}
-          className="relative z-10 mb-12 flex w-full items-center justify-between border-y border-[#f1dada14] py-5 sm:mb-16 sm:py-6"
+          className="relative z-10 mb-8 flex w-full items-center justify-between border-y border-[#f1dada14] py-4 sm:mb-16 sm:py-6"
         >
           <Magnetic strength={0.2}>
             <button
@@ -269,7 +269,7 @@ function Contact() {
               }}
               data-cursor="copy"
               data-cursor-text={copied ? "COPIED!" : "COPY"}
-              className="copyCursor group flex items-center gap-3 font-body text-base text-[#d7c2c2] transition-colors hover:text-[#f1dada] sm:text-lg md:text-xl"
+              className="copyCursor group flex max-w-full items-center gap-3 whitespace-nowrap font-body text-[clamp(0.8rem,4vw,1rem)] text-[#d7c2c2] transition-colors hover:text-[#f1dada] sm:text-lg md:text-xl"
             >
               <span className="text-[#fa4a00] transition-transform group-hover:scale-110">
                 ✉
@@ -303,7 +303,7 @@ function Contact() {
             duration: 0.6,
             delay: 0.6,
           }}
-          className="relative z-10 flex flex-wrap items-center gap-4 sm:gap-6"
+          className="relative z-10 flex flex-nowrap items-center gap-2 sm:gap-6"
         >
           {/* LinkedIn */}
           <Magnetic strength={0.35}>
@@ -311,7 +311,7 @@ function Contact() {
               href="https://www.linkedin.com/in/sahil-dalvi-47b876367/"
               target="_blank"
               rel="noopener noreferrer"
-              className="group inline-flex items-center gap-2 rounded-full border border-[#f1dada26] px-5 py-2.5 font-body text-xs font-medium uppercase tracking-[0.1em] text-[#D7C2C2] transition-all hover:border-[#fa4a00] hover:bg-[#fa4a000f] sm:px-6 sm:py-3 sm:text-sm"
+              className="group inline-flex items-center gap-2 rounded-full border border-[#f1dada26] px-3 py-2 font-body text-xs font-medium uppercase tracking-[0.08em] text-[#D7C2C2] transition-all hover:border-[#fa4a00] hover:bg-[#fa4a000f] sm:px-6 sm:py-3 sm:text-sm"
             >
               <span>LINKEDIN</span>
 
@@ -326,7 +326,7 @@ function Contact() {
               download
               target="_blank"
               rel="noopener noreferrer"
-              className="group inline-flex items-center gap-2 rounded-full bg-[#fa4a00] px-5 py-2.5 font-body text-xs font-medium uppercase tracking-[0.1em] text-black transition-all hover:bg-[#ff6b1a] sm:px-6 sm:py-3 sm:text-sm"
+              className="group inline-flex items-center gap-2 rounded-full bg-[#fa4a00] px-3 py-2 font-body text-xs font-medium uppercase tracking-[0.08em] text-black transition-all hover:bg-[#ff6b1a] sm:px-6 sm:py-3 sm:text-sm"
             >
               <span>DOWNLOAD CV</span>
 
@@ -343,7 +343,7 @@ function Contact() {
               "0.8px rgba(255, 255, 255, 0.08)",
             color: "transparent",
           }}
-          className="pointer-events-none absolute -bottom-2 right-6 z-0 select-none font-display text-[clamp(4.5rem,12vw,13rem)] font-light uppercase leading-[0.85] tracking-[-0.03em] sm:right-10 md:right-12 lg:right-16 xl:right-20"
+          className="pointer-events-none absolute -bottom-2 right-6 z-0 select-none font-display text-[clamp(3.2rem,10vw,6rem)] font-light uppercase leading-[0.85] tracking-[-0.03em] sm:right-10 md:right-12 md:text-[clamp(4.5rem,12vw,13rem)] lg:right-16 xl:right-20"
         >
           CONTACT
         </div>

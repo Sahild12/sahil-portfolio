@@ -20,7 +20,7 @@ function AboutRule({ progress, bottom = false }) {
   );
 
   return (
-    <div className={`flex items-center gap-4 ${bottom ? "mt-16" : "mb-14"}`}>
+    <div className={`flex items-center gap-4 ${bottom ? "mt-10 md:mt-16" : "mb-6 md:mb-14"}`}>
       <span className="shrink-0 text-xs tracking-[0.08em] text-[#87909f]">
         ABOUT
       </span>
@@ -54,12 +54,12 @@ function Skills() {
     <section
       ref={sectionRef}
       id="skills"
-      className="relative overflow-hidden bg-black px-8 py-24 pb-0 text-white md:px-[8vw] md:py-28 md:pb-0"
+      className="relative overflow-hidden bg-black px-5 pt-10 pb-0 text-white md:px-[8vw] md:py-28 md:pb-0"
     >
       <div className="mx-auto max-w-[1500px]">
         <motion.div
           style={{ y: labelY, opacity: labelOpacity }}
-          className="mb-8 flex items-center gap-3"
+          className="mb-6 flex items-center gap-3 md:mb-8"
         >
           <span className="h-2 w-2 rounded-full bg-orange-500" />
           <span className="text-sm tracking-[0.12em] text-white/60">
@@ -71,12 +71,12 @@ function Skills() {
 
         <motion.div
           style={{ opacity: contentOpacity }}
-          className="grid grid-cols-1 gap-12 md:grid-cols-[0.55fr_1fr_1fr] md:gap-10"
+          className="grid grid-cols-1 gap-7 md:grid-cols-[0.55fr_1fr_1fr] md:gap-10"
         >
           <div>
             <WordReveal
               as="h2"
-              className="font-display text-6xl leading-none tracking-[-0.03em] text-[#d8caca] md:text-7xl lg:text-8xl"
+              className="font-display text-4xl leading-none tracking-[-0.03em] text-[#d8caca] md:text-7xl lg:text-8xl"
             >
               Skills
             </WordReveal>
@@ -85,7 +85,7 @@ function Skills() {
           <div>
             <WordReveal
               as="h3"
-              className="font-body text-3xl tracking-[-0.03em] text-[#d8caca] md:text-[2.15rem]"
+              className="font-body text-xl tracking-[-0.03em] text-[#d8caca] md:text-[2.15rem]"
             >
               Frontend Engineering
             </WordReveal>
@@ -105,7 +105,7 @@ function Skills() {
           <div>
             <WordReveal
               as="h3"
-              className="font-body text-3xl tracking-[-0.03em] text-[#d8caca] md:text-[2.15rem]"
+              className="font-body text-xl tracking-[-0.03em] text-[#d8caca] md:text-[2.15rem]"
             >
               Backend Architecture
             </WordReveal>

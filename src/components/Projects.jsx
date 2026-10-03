@@ -157,6 +157,7 @@ function Projects() {
                   <h3 className="font-body text-[1.8rem] font-normal leading-[0.95] tracking-[-0.025em] text-[#d8caca] transition-colors duration-300 group-hover:text-orange-500 sm:text-[2.15rem] md:text-[2.65rem] lg:text-[3.05rem]">
                     {project.title}
                   </h3>
+
                 </div>
 
                 <div className="flex shrink-0 items-center gap-6 transition-transform duration-400 ease-[cubic-bezier(0.76,0,0.24,1)] group-hover:translate-x-2.5">

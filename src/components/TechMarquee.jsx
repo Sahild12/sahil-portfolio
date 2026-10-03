@@ -17,7 +17,7 @@ const TechMarquee = ({ items: marqueeItems = technologies, direction = "left" })
   return (
     <section
       aria-label="Technologies I work with"
-      className="overflow-hidden border-y border-white/10 bg-[#070707] py-8 text-white"
+      className="overflow-hidden border-y border-white/10 bg-[#070707] py-4 text-white sm:py-8"
     >
 
       <div className="relative overflow-hidden">
@@ -27,7 +27,7 @@ const TechMarquee = ({ items: marqueeItems = technologies, direction = "left" })
         <div className={`marquee-track ${isReverse ? "marquee-track-reverse" : ""} flex items-center`} aria-hidden="true">
           {items.map((technology, index) => (
             <span
-              className="flex shrink-0 items-center gap-8 px-6 font-display text-3xl tracking-[0.04em] text-white sm:text-4xl"
+              className="flex shrink-0 items-center gap-5 px-5 font-display text-xl tracking-[0.04em] text-white sm:gap-8 sm:px-6 sm:text-4xl"
               key={`${technology}-${index}`}
             >
               {technology}

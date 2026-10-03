@@ -35,7 +35,7 @@ function About() {
         <section
             ref={aboutRef}
             id="about"
-            className="relative bg-black px-8 py-24 md:px-[8vw] md:py-32"
+            className="relative bg-black px-5 pt-9 pb-24 md:px-[8vw] md:py-32"
         >
             <div className="mx-auto grid max-w-[1500px] grid-cols-1 gap-12 md:grid-cols-[120px_1fr]">
 
@@ -52,7 +52,7 @@ function About() {
                 <div>
 
                     {/* Mobile label */}
-                    <div className="mb-10 flex items-center gap-3 md:hidden">
+                    <div className="mb-6 flex items-center gap-3 md:hidden">
                         <span className="font-display text-sm tracking-[0.2em] text-white/40">
                             02
                         </span>
@@ -66,7 +66,7 @@ function About() {
 
                     {/* Main text */}
                     <div className="relative max-w-[1250px]">
-                        <p className="font-body text-xl leading-[1.2] tracking-[-0.02em] sm:text-2xl md:text-3xl lg:text-[2.5rem]">
+                        <p className="font-body text-lg leading-[1.35] tracking-[-0.02em] sm:text-2xl md:text-3xl lg:text-[2.5rem]">
                             {ABOUT_CHARACTERS.map((character, characterIndex) => (
                                 <span
                                     className={`transition-colors duration-300 ${characterIndex < activeWords ? "text-white" : "text-white/20"}`}

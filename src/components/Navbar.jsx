@@ -56,7 +56,7 @@ function Navbar() {
   return (
     <>
       {/* NAVBAR */}
-      <nav className="fixed left-0 top-0 z-[100] w-full px-4 py-3.5 sm:px-8 md:px-[5vw] bg-black/70 backdrop-blur-md">
+      <nav className="fixed inset-x-0 top-0 z-[999] w-full isolate bg-black/95 px-4 py-3.5 backdrop-blur-md sm:px-8 md:bg-black/70 md:px-[5vw]">
         <div className="relative mx-auto flex max-w-[1800px] items-center justify-between gap-3">
           {/* LOGO */}
           <Magnetic pull={0.45} className="p-3 -m-3">
@@ -105,7 +105,7 @@ function Navbar() {
 
       {/* FULLSCREEN MENU */}
       <div
-        className={`fixed inset-0 z-[200] flex flex-col bg-black transition-all duration-500 ${menuOpen
+        className={`fixed inset-0 z-[1001] flex flex-col bg-black transition-all duration-500 ${menuOpen
           ? "pointer-events-auto opacity-100"
           : "pointer-events-none opacity-0"
           }`}
@@ -113,7 +113,7 @@ function Navbar() {
       >
         <div className="relative z-10 flex h-full flex-col overflow-y-auto">
           {/* HEADER */}
-          <div className="flex items-center justify-between px-4 py-6 sm:px-8 sm:py-8 md:px-[5vw]">
+          <div className="flex items-center justify-between px-5 py-4 sm:px-8 sm:py-8 md:px-[5vw]">
             <Magnetic pull={0.45} className="p-3 -m-3">
               <a
                 href="#home"
@@ -164,7 +164,7 @@ function Navbar() {
           </div>
 
           {/* MENU ITEMS */}
-          <div className="flex-1 px-4 sm:px-8 md:px-[6vw]">
+          <div className="flex-1 px-5 sm:px-8 md:px-[6vw]">
             {[
               ["01", "WORK", "#projects"],
               ["02", "ABOUT", "#about"],
@@ -174,13 +174,13 @@ function Navbar() {
                 key={label}
                 href={href}
                 onClick={closeMenu}
-                className="group relative flex items-center border-b border-white/10 py-6 transition-all duration-300 hover:pl-2 sm:py-8"
+                className="group relative flex items-center border-b border-white/10 py-4 transition-all duration-300 hover:pl-2 sm:py-8"
               >
                 <span className="w-8 text-xs text-white/40 sm:w-12 sm:text-sm">
                   {number}
                 </span>
 
-                <span className="font-display text-4xl text-[#d8caca] transition-all duration-300 group-hover:text-orange-500 sm:text-5xl md:text-7xl">
+                <span className="font-display text-[1.75rem] text-[#d8caca] transition-all duration-300 group-hover:text-orange-500 sm:text-5xl md:text-7xl">
                   {label}
                 </span>
 
@@ -192,11 +192,11 @@ function Navbar() {
           </div>
 
           {/* MENU FOOTER */}
-          <div className="mt-auto px-4 pb-6 sm:px-8 sm:pb-7 md:px-[5vw] md:pb-8">
+          <div className="mt-auto px-5 pb-6 sm:px-8 sm:pb-7 md:px-[5vw] md:pb-8">
             <div className="mb-6 h-px w-full bg-white/15" />
 
             <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
-              <div className="flex flex-wrap items-center gap-3 sm:gap-5">
+              <div className="grid grid-cols-2 items-center gap-x-4 gap-y-6 sm:flex sm:flex-wrap sm:gap-5">
                 <a
                   href="https://www.linkedin.com/in/sahil-dalvi-47b876367/"
                   target="_blank"

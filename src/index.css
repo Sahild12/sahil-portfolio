@@ -207,6 +207,12 @@ a {
   -webkit-backdrop-filter: blur(9px);
 }
 
+@media (max-width: 767px) {
+  nav [data-magnetic-inner] {
+    transform: none !important;
+  }
+}
+
 @media (max-width: 640px) {
   footer .footer-center {
     position: static;

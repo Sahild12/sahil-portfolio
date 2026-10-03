@@ -8,6 +8,11 @@ export default function Magnetic({ children, pull = 0.35, strength, className = 
 
   const handleMouse = (e) => {
     if (!containerRef.current || !innerRef.current) return;
+    if (
+      window.innerWidth < 768 ||
+      !window.matchMedia("(hover: hover) and (pointer: fine)").matches
+    ) return;
+
     const { clientX, clientY } = e;
     const { height, width, left, top } = containerRef.current.getBoundingClientRect();
     const middleX = clientX - (left + width / 2);
@@ -40,7 +45,7 @@ export default function Magnetic({ children, pull = 0.35, strength, className = 
       onMouseLeave={handleMouseLeave}
       className={`inline-flex ${className}`}
     >
-      <div ref={innerRef} className="inline-flex items-center">
+      <div ref={innerRef} data-magnetic-inner className="inline-flex items-center">
         {children}
       </div>
     </div>
