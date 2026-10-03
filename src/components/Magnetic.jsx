@@ -1,38 +1,49 @@
-import { useRef, useState } from "react";
+import { useRef } from "react";
+import gsap from "gsap";
 
-export default function Magnetic({ children, pull = 0.3, strength }) {
-  const ref = useRef(null);
-  const factor = strength ?? pull ?? 0.3;
-  const [position, setPosition] = useState({ x: 0, y: 0 });
+export default function Magnetic({ children, pull = 0.35, strength, className = "" }) {
+  const containerRef = useRef(null);
+  const innerRef = useRef(null);
+  const factor = strength ?? pull ?? 0.35;
 
   const handleMouse = (e) => {
-    if (!ref.current) return;
+    if (!containerRef.current || !innerRef.current) return;
     const { clientX, clientY } = e;
-    const { height, width, left, top } = ref.current.getBoundingClientRect();
+    const { height, width, left, top } = containerRef.current.getBoundingClientRect();
     const middleX = clientX - (left + width / 2);
     const middleY = clientY - (top + height / 2);
-    setPosition({ x: middleX * factor, y: middleY * factor });
+
+    gsap.to(innerRef.current, {
+      x: middleX * factor,
+      y: middleY * factor,
+      duration: 0.25,
+      ease: "power2.out",
+      overwrite: "auto",
+    });
   };
 
-  const reset = () => {
-    setPosition({ x: 0, y: 0 });
+  const handleMouseLeave = () => {
+    if (!innerRef.current) return;
+    gsap.to(innerRef.current, {
+      x: 0,
+      y: 0,
+      duration: 0.7,
+      ease: "elastic.out(1, 0.4)",
+      overwrite: "auto",
+    });
   };
 
   return (
     <div
-      ref={ref}
+      ref={containerRef}
       onMouseMove={handleMouse}
-      onMouseLeave={reset}
-      style={{
-        transform: `translate(${position.x}px, ${position.y}px)`,
-        transition:
-          position.x === 0 && position.y === 0
-            ? "transform 0.5s cubic-bezier(0.25, 1, 0.5, 1)"
-            : "transform 0.1s linear",
-      }}
-      className="inline-flex"
+      onMouseLeave={handleMouseLeave}
+      className={`inline-flex ${className}`}
     >
-      {children}
+      <div ref={innerRef} className="inline-flex items-center">
+        {children}
+      </div>
     </div>
   );
 }
+

@@ -4,15 +4,16 @@ import gsap from "gsap";
 import premierModelsImage from "../assets/premier-models.png";
 import citizenGrievanceImage from "../assets/citizen-grievance.png";
 import teaImage from "../assets/Tea.png";
+import spaceImage from "../assets/Space.png";
 
 const projects = [
   {
     id: "01",
-    title: "BoardBridge",
-    category: "DEVELOPMENT & DESIGN",
+    title: "Space",
+    category: "FRONTEND DEVELOPMENT",
     year: "2026",
-    image: "/projects/boardbridge.jpg",
-    link: "#",
+    image: spaceImage,
+    link: "https://space-nine-gray.vercel.app/",
     previewBackground: "#203829",
   },
   {
@@ -36,7 +37,7 @@ const projects = [
   {
     id: "04",
     title: "TEA-Luxury-Scroll-Driven-Website",
-    category: "DESIGN & DEVELOPMENT",
+    category: "FRONTEND DEVELOPMENT",
     year: "2026",
     image: teaImage,
     link: "https://tea-luxury-scroll-driven-website.vercel.app/",

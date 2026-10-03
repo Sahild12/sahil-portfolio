@@ -323,7 +323,9 @@ function Contact() {
           <Magnetic strength={0.35}>
             <a
               href="/Sahil Resume.pdf"
-              download="Sahil Resume.pdf"
+              download
+              target="_blank"
+              rel="noopener noreferrer"
               className="group inline-flex items-center gap-2 rounded-full bg-[#fa4a00] px-5 py-2.5 font-body text-xs font-medium uppercase tracking-[0.1em] text-black transition-all hover:bg-[#ff6b1a] sm:px-6 sm:py-3 sm:text-sm"
             >
               <span>DOWNLOAD CV</span>
@@ -338,10 +340,10 @@ function Contact() {
           aria-hidden="true"
           style={{
             WebkitTextStroke:
-              "1px rgba(255, 255, 255, 0.07)",
+              "0.8px rgba(255, 255, 255, 0.08)",
             color: "transparent",
           }}
-          className="pointer-events-none absolute -bottom-2 right-6 z-0 select-none font-display text-[clamp(4.5rem,12vw,13rem)] font-bold uppercase leading-[0.85] tracking-[-0.02em] sm:right-10 md:right-12 lg:right-16 xl:right-20"
+          className="pointer-events-none absolute -bottom-2 right-6 z-0 select-none font-display text-[clamp(4.5rem,12vw,13rem)] font-light uppercase leading-[0.85] tracking-[-0.03em] sm:right-10 md:right-12 lg:right-16 xl:right-20"
         >
           CONTACT
         </div>
