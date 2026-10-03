@@ -101,11 +101,11 @@ export default function Loader({ onComplete }) {
       <div className="absolute bottom-[4.1rem] right-[4.2rem] flex items-end font-display font-light leading-none md:bottom-[4.4rem] md:right-[4.7rem]">
         <span
           ref={percentRef}
-          className="text-[clamp(3.2rem,5vw,5.4rem)] tracking-[-0.04em]"
+          className="text-[clamp(4.5rem,9vw,8rem)] tracking-[-0.04em]"
         >
           0
         </span>
-        <span className="mb-[0.18rem] ml-1 text-[clamp(1.1rem,1.8vw,2rem)] font-normal">
+        <span className="mb-[0.4rem] ml-1 text-[clamp(1.5rem,2.5vw,2.5rem)] font-normal">
           %
         </span>
       </div>
