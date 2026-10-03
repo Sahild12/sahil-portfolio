@@ -6,7 +6,7 @@ function WhatsAppButton() {
     <div className="fixed bottom-8 right-8 z-50">
       <Magnetic pull={0.4}>
         <a
-          href="https://wa.me/your-number"
+          href="https://wa.me/918149593948"
           target="_blank"
           rel="noopener noreferrer"
           aria-label="Contact Sahil on WhatsApp"
